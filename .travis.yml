@@ -8,3 +8,7 @@ addons:
     - oracle-java9-installer
 before_install:
 - chmod +x mvnw
+notifications:
+  email:
+    on_success: always
+    on_failure: always
