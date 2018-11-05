@@ -16,8 +16,8 @@ public class MultiTranslationRestController {
         try {
             JSONArray translationsArray = (JSONArray) parser.parse(jsonText);
             //TODO dodać przetwarzenie skrótów
-            for (int i = 0; i < translationsArray.size(); i++) {
-                String actTranslation = (String) translationsArray.get(i);
+            for (Object aTranslationsArray : translationsArray) {
+                String actTranslation = (String) aTranslationsArray;
                 if (actTranslation.compareTo("lower") == 0) {
                     text = Translator.toLowerCase(text);
                 } else if (actTranslation.compareTo("upper") == 0) {
