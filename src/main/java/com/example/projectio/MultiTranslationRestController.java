@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MultiTranslationRestController {
 
+
     /**
      * Metoda klasy MultiTranslationRestController pozwalająca na obsługę rządania
      * składania wielu translacji na jednym podanym przez użytkownika tekscie
@@ -27,13 +28,13 @@ public class MultiTranslationRestController {
      * @return (String) tekst po zastosowaniu translacji rządanych przez użytkownika
      */
     @RequestMapping(value = "/api/multiTranslation")
-    public String getMultiTranslation(@RequestParam(name = "text") String text, @RequestParam(name = "translations") String jsonText) {
+    public static String getMultiTranslation(@RequestParam(name = "text") String text, @RequestParam(name = "translations") String jsonText) {
         JSONParser parser = new JSONParser();
         try {
             JSONArray translationsArray = (JSONArray) parser.parse(jsonText);
             for (Object aTranslationsArray : translationsArray) {
                 String actTranslation = (String) aTranslationsArray;
-
+                System.out.println("'" + text + "'");
                 if (actTranslation.compareTo("lower") == 0) {
                     text = Translator.toLowerCase(text);
                 } else if (actTranslation.compareTo("upper") == 0) {
@@ -50,7 +51,7 @@ public class MultiTranslationRestController {
                     //TODO dodanie własnych skrótów
                 }
             }
-
+            System.out.println("'" + text + "'");
             return text;
         } catch (ParseException e) {
             e.printStackTrace();
