@@ -69,7 +69,10 @@ public class Translator {
 
         for (String w : arr) {
             try{
-                x += " " + change_on_word_pol(w);
+                if(Integer.valueOf(w) >=0 && Integer.valueOf(w) < 1000) {
+                    x += " " + change_on_word_pol(w);
+                }
+                else x += " " + w;
             }
             catch (NumberFormatException e){
                 x += " " + w;
@@ -80,7 +83,7 @@ public class Translator {
         return x;
     }
 
-    private static final String[] FIRST = new String[]{"jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć"};
+    private static final String[] FIRST = new String[]{"zero" , "jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć"};
     private static final String[] SECOND = new String[] {"dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście",
             "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"};
     private static final String[] OTHERS = {"dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt",
@@ -94,7 +97,7 @@ public class Translator {
         int number = Integer.valueOf(w);
 
         if (number<10){
-            x += FIRST[number-1];
+            x += FIRST[number];
             return x;
         }
 
@@ -111,7 +114,7 @@ public class Translator {
 
         else if (number%10!=0 && (String.valueOf(number).length())<3){
             x+= OTHERS[Integer.valueOf((number/10)-2)];
-            x+=" "+ FIRST[Integer.valueOf((number%10)-1)];
+            x+=" "+ FIRST[Integer.valueOf((number%10))];
             return x;
         }
 
