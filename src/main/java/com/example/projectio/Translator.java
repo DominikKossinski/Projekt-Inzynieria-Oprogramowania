@@ -61,4 +61,89 @@ public class Translator {
         return text;
 
     }
+
+    public static String expandNumbers(String zdanie) {
+        String[] arr = zdanie.split(" ", 0);
+
+        String x = "";
+
+        for (String w : arr) {
+            try{
+                x += " " + change_on_word_pol(w);
+            }
+            catch (NumberFormatException e){
+                x += " " + w;
+            }
+
+        }
+
+        return x;
+    }
+
+    private static final String[] FIRST = new String[]{"jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć"};
+    private static final String[] SECOND = new String[] {"dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście",
+            "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"};
+    private static final String[] OTHERS = {"dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt",
+            "siedemdziesiąt", "osiemdziesiąt", "dziewięćdziesiąt"};
+    private static final String[] HUNDRETS = {"sto", "dwieście", "trzysta", "czterysta", "pięćset", "sześćset", "siedemset",
+            "osiemset", "dziewięćset"};
+
+    private static String change_on_word_pol(String w) {
+
+        String x = "";
+        int number = Integer.valueOf(w);
+
+        if (number<10){
+            x += FIRST[number-1];
+            return x;
+        }
+
+        else if (number<20){
+
+            x+= SECOND[number-10];
+            return x;
+        }
+
+        else if (number%10==0 && (String.valueOf(number).length())<3){
+            x+= OTHERS[Integer.valueOf((number/10)-2)];
+            return x;
+        }
+
+        else if (number%10!=0 && (String.valueOf(number).length())<3){
+            x+= OTHERS[Integer.valueOf((number/10)-2)];
+            x+=" "+ FIRST[Integer.valueOf((number%10)-1)];
+            return x;
+        }
+
+        else if (number%10==0 && String.valueOf(number).length() == 3 && number% 100 == 0){
+
+            x+= HUNDRETS[Integer.valueOf((number/100)-1)];   //pięćset itp.
+            return x;
+        }
+
+        else {
+            x += HUNDRETS[Integer.valueOf((number/100)-1)];
+
+            if(number%10 == 0){
+                x += " " + OTHERS[Integer.valueOf((number%100)/10-2)];
+                return x;
+            }
+
+            else if (Integer.valueOf(number/10)%10 == 0){
+                x += " " + change_on_word_pol(String.valueOf(number%10));
+                return x;
+            }
+
+            else if(Integer.valueOf(number/10)%10 == 1){
+                x+=" " + change_on_word_pol(String.valueOf(number%100));
+                return x;
+            }
+
+            else{
+                x += " " + OTHERS[(number/10)%10-2];
+                x += " " + change_on_word_pol(String.valueOf(number%10));
+                return x;
+            }
+        }
+    }
 }
