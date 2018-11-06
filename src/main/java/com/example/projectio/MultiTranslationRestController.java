@@ -15,7 +15,7 @@ public class MultiTranslationRestController {
         JSONParser parser = new JSONParser();
         try {
             JSONArray translationsArray = (JSONArray) parser.parse(jsonText);
-            //TODO dodać przetwarzenie skrótów
+            text = Translator.expandShortcuts(text);
             for (Object aTranslationsArray : translationsArray) {
                 String actTranslation = (String) aTranslationsArray;
                 if (actTranslation.compareTo("lower") == 0) {
