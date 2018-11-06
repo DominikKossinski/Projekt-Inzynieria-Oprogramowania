@@ -34,7 +34,6 @@ public class MultiTranslationRestController {
             JSONArray translationsArray = (JSONArray) parser.parse(jsonText);
             for (Object aTranslationsArray : translationsArray) {
                 String actTranslation = (String) aTranslationsArray;
-                System.out.println("'" + text + "'");
                 if (actTranslation.compareTo("lower") == 0) {
                     text = Translator.toLowerCase(text);
                 } else if (actTranslation.compareTo("upper") == 0) {
@@ -51,7 +50,6 @@ public class MultiTranslationRestController {
                     //TODO dodanie własnych skrótów
                 }
             }
-            System.out.println("'" + text + "'");
             return text;
         } catch (ParseException e) {
             e.printStackTrace();
