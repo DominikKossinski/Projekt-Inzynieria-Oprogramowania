@@ -33,6 +33,8 @@ public class Translator {
 
     public static String toCapitalize(String text)
     {
+        text = text.toLowerCase();
+
         StringBuilder result = new StringBuilder(text.length());
         String words[] = text.split("\\ ");
         for (int i = 0; i < words.length; i++)
