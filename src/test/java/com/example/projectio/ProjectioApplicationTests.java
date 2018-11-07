@@ -14,9 +14,14 @@ public class ProjectioApplicationTests {
     @DisplayName(value = "First MultiTranslationTest")
     public void acceptGetMultiTranslation() {
         assert (MultiTranslationRestController.getMultiTranslation(
+                "Kossa 123 prof.", "[\"upper\", \"capitalize\"]")
+                .compareTo("Kossa 123 Prof.") == 0);
+        assert (MultiTranslationRestController.getMultiTranslation(
                 "Kossa 123 prof.", "[\"upper\", \"expandNumbers\"]")
                 .compareTo("KOSSA sto dwadzieścia trzy PROF.") == 0);
+
     }
+
 
     @Test
     public void contextLoads() {
