@@ -38,7 +38,7 @@ public class Translator {
         for (int i = 0; i < words.length; i++)
             result.append(Character.toUpperCase(words[i].charAt(0))).append(words[i].substring(1)).append(" ");
 
-        return result.toString();
+        return result.toString().substring(0,result.length()-1);
     }
 
     public static String expandShortcuts(String text) {

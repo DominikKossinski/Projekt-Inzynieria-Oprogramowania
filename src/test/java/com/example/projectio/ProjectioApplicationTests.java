@@ -13,4 +13,9 @@ public class ProjectioApplicationTests {
     public void contextLoads() {
     }
 
+    @Test
+    public void capitalizeTest(){
+        assert (Translator.toCapitalize("Test test").compareTo("Test Test")==0);
+    }
+
 }
