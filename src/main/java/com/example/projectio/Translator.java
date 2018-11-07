@@ -33,12 +33,14 @@ public class Translator {
 
     public static String toCapitalize(String text)
     {
+        text = text.toLowerCase();
+
         StringBuilder result = new StringBuilder(text.length());
         String words[] = text.split("\\ ");
         for (int i = 0; i < words.length; i++)
             result.append(Character.toUpperCase(words[i].charAt(0))).append(words[i].substring(1)).append(" ");
 
-        return result.toString();
+        return result.toString().substring(0,result.length()-1);
     }
 
     public static String expandShortcuts(String text) {
@@ -66,8 +68,9 @@ public class Translator {
         String[] arr = zdanie.split(" ", 0);
 
         String x = "";
-
+        int i = 0;
         for (String w : arr) {
+
             try{
                 if(Integer.valueOf(w) >=0 && Integer.valueOf(w) < 1000) {
                     x += " " + change_on_word_pol(w);
@@ -75,11 +78,16 @@ public class Translator {
                 else x += " " + w;
             }
             catch (NumberFormatException e){
-                x += " " + w;
+                if(i == 0) {
+                    x += w;
+                }
+                else{
+                    x += " " + w;
+                }
             }
 
+            i++;
         }
-
         return x;
     }
 
