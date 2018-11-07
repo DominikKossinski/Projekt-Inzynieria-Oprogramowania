@@ -68,8 +68,9 @@ public class Translator {
         String[] arr = zdanie.split(" ", 0);
 
         String x = "";
-
+        int i = 0;
         for (String w : arr) {
+
             try{
                 if(Integer.valueOf(w) >=0 && Integer.valueOf(w) < 1000) {
                     x += " " + change_on_word_pol(w);
@@ -77,11 +78,16 @@ public class Translator {
                 else x += " " + w;
             }
             catch (NumberFormatException e){
-                x += " " + w;
+                if(i == 0) {
+                    x += w;
+                }
+                else{
+                    x += " " + w;
+                }
             }
 
+            i++;
         }
-
         return x;
     }
 
