@@ -53,7 +53,7 @@ public class MyShortcutsRestController {
             consumes = MediaType.TEXT_PLAIN_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public String createMyShortCut(@RequestParam(name = "replace", defaultValue = "false") boolean replace,
                                    @RequestBody String text) {
-        File file = new File("src\\main\\resources\\myShortcuts.json");
+        File file = new File("src/main/resources/myShortcuts.json");
         try {
             FileReader reader = new FileReader(file);
             JSONParser parser = new JSONParser();
