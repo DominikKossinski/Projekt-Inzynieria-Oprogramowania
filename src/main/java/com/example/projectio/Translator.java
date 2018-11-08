@@ -45,7 +45,7 @@ public class Translator {
      * @return (String) tekst po rozwinięciu skrótów
      */
     public static String expandMyShortcuts(String text) {
-        File file = new File("src\\main\\resources\\myShortcuts.json");
+        File file = new File("src/main/resources/myShortcuts.json");
         try {
             FileReader reader = new FileReader(file);
             JSONParser parser = new JSONParser();
