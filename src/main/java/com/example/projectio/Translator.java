@@ -1,5 +1,13 @@
 package com.example.projectio;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import static java.lang.Character.isUpperCase;
 
 public class Translator {
@@ -155,6 +163,30 @@ public class Translator {
                 x += " " + change_on_word_pol(String.valueOf(number%10));
                 return x;
             }
+        }
+    }
+
+    /**
+     * Metoda służąca do rozwijania zdefiniowanych przez użytkownika skrótów
+     * w tekście przekazywanym jako parametr.
+     *
+     * @param text - (String) tekst, w którym sktóty mają zostać rozwinięte
+     * @return (String) tekst po rozwinięciu skrótów
+     */
+    public static String expandMyShortcuts(String text) {
+        File file = new File("src/main/resources/myShortcuts.json");
+        try {
+            FileReader reader = new FileReader(file);
+            JSONParser parser = new JSONParser();
+            JSONArray array = (JSONArray) parser.parse(reader);
+            for (Object object : array) {
+                JSONObject shortcut = (JSONObject) object;
+                text = text.replace(shortcut.get("shortcut").toString(), shortcut.get("expanded").toString());
+            }
+            return text;
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+            return "ERROR";
         }
     }
 }
