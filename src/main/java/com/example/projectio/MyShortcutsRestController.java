@@ -19,7 +19,7 @@ import java.io.*;
 public class MyShortcutsRestController {
 
     /**
-     * Metoda klasy MyShortcutsRestController pozwalająca na obsługę rządania
+     * Metoda klasy MyShortcutsRestController pozwalająca na obsługę żądania
      * rozwinięcia w podanym przez użytkownika tekscie skróty, które wcześniej
      * zdefiniował.
      * Przykładowy URL:
@@ -35,9 +35,9 @@ public class MyShortcutsRestController {
     }
 
     /**
-     * Metoda klasy MyShortcutsRestController pozwalająca na obsługę rządania
+     * Metoda klasy MyShortcutsRestController pozwalająca na obsługę żądania
      * dodania (lub zamiany) skrótu definiowanego przez użytkownika.
-     * Przykładowe rządanie:
+     * Przykładowe żądanie:
      * metoda: POST
      * url: http\\localhost:8080/api/createMyShortcut
      * requestBody rodzaj: text/plain
@@ -53,7 +53,7 @@ public class MyShortcutsRestController {
             consumes = MediaType.TEXT_PLAIN_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public String createMyShortCut(@RequestParam(name = "replace", defaultValue = "false") boolean replace,
                                    @RequestBody String text) {
-        File file = new File("src/main/resources/myShortcuts.json");
+        File file = new File("src\\main\\resources\\myShortcuts.json");
         try {
             FileReader reader = new FileReader(file);
             JSONParser parser = new JSONParser();
@@ -98,7 +98,7 @@ public class MyShortcutsRestController {
     /**
      * Metoda klasy MyShortcutRestController pozwalająca na usunięcie
      * wcześniej zdefiniowanego przez użytkownika skrótu.
-     * Przykładowe rządanie:
+     * Przykładowe żądanie:
      * metoda: DELETE
      * url: http:\\localhost:8080/api/deleteMyShortcut/DK
      *
@@ -109,7 +109,7 @@ public class MyShortcutsRestController {
      */
     @RequestMapping(value = "/api/deleteMyShortcut/{shortcut}", method = RequestMethod.DELETE)
     public String deleteMyShortcut(@PathVariable("shortcut") String shortcut) {
-        File file = new File("src/main/resources/myShortcuts.json");
+        File file = new File("src\\main\\resources\\myShortcuts.json");
         try {
             FileReader reader = new FileReader(file);
             JSONParser parser = new JSONParser();
