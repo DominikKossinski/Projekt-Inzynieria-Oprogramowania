@@ -25,7 +25,7 @@ public class InverseRestController {
      * @see Translator#toInverse(String)
      */
     @GetMapping("/api/inverse")
-    public String getTextToUpperCase(@RequestParam(name = "text") String text) {
+    public static String inverseText(@RequestParam(name = "text") String text) {
         return Translator.toInverse(text);
     }
 }
