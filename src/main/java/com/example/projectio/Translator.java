@@ -4,9 +4,21 @@ import static java.lang.Character.isUpperCase;
 
 public class Translator {
 
+    /**
+     * Metoda klasy Translator pozwalająca na zmianę wielkość liter na małe
+     * @param text  - (String) tekst do translacji
+     * @return (String) tekst po zastosowaniu translacji w którym każda litera jest mała
+     */
+
     public static String toLowerCase(String text) {
         return text.toLowerCase();
     }
+
+    /**
+     * Metoda klasy Translator pozwalająca na zmianę wielkość liter na wielkie
+     * @param text  - (String) tekst do translacji
+     * @return (String) tekst po zastosowaniu translacji w którym każda litera jest wielka
+     */
 
     public static String toUpperCase(String text) {return text.toUpperCase(); }
 
@@ -31,6 +43,13 @@ public class Translator {
         return inversed;
     }
 
+    /**
+     * Metoda klasy Translator pozwalająca na zmianę welkośći pierwszej litery
+     * każdego wyrazu w zdaniu na wileką
+     * @param text  - (String) tekst do translacji
+     * @return (String) tekst po zastosowaniu translacji w którym pierwsza litera każdego wyrazu jest wielka
+     */
+
     public static String toCapitalize(String text)
     {
         text = text.toLowerCase();
@@ -42,6 +61,14 @@ public class Translator {
 
         return result.toString().substring(0,result.length()-1);
     }
+
+    /**
+     * Metoda klasy Translator pozwalająca na rozwijanie podstawowych skrótów
+     *
+     * @param text  - (String) tekst do translacji
+     * @return (String) tekst po zastosowaniu translacji w którym podane poniżej skróty
+     * zostają zastąpione przez ich pełne rozwinięcia
+     */
 
     public static String expandShortcuts(String text) {
         text = text.replace("Dr ", "Doktor ");
@@ -63,6 +90,15 @@ public class Translator {
         return text;
 
     }
+
+    /**
+     * Metoda klasy Translator pozwalająca na zamianę liczb pisanych cyframi na ich słowną reprezentację
+     *
+     * @param text  - (String) tekst do translacji
+     * @return (String) tekst po zastosowaniu translacji w którym wszystkie liczby pisane cyframi zostają
+     * zostają zastąpione przez ich słowne reprezentacje np. 100 - sto
+     */
+
 
     public static String expandNumbers(String zdanie) {
         String[] arr = zdanie.split(" ", 0);
@@ -98,6 +134,11 @@ public class Translator {
             "siedemdziesiąt", "osiemdziesiąt", "dziewięćdziesiąt"};
     private static final String[] HUNDRETS = {"sto", "dwieście", "trzysta", "czterysta", "pięćset", "sześćset", "siedemset",
             "osiemset", "dziewięćset"};
+
+
+    /**
+     * Metoda wspomagająca metodę expandNumber()
+     */
 
     private static String change_on_word_pol(String w) {
 
