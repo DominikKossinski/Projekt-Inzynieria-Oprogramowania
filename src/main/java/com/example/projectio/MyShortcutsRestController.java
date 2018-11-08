@@ -109,7 +109,7 @@ public class MyShortcutsRestController {
      */
     @RequestMapping(value = "/api/deleteMyShortcut/{shortcut}", method = RequestMethod.DELETE)
     public String deleteMyShortcut(@PathVariable("shortcut") String shortcut) {
-        File file = new File("src\\main\\resources\\myShortcuts.json");
+        File file = new File("src/main/resources/myShortcuts.json");
         try {
             FileReader reader = new FileReader(file);
             JSONParser parser = new JSONParser();
