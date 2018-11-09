@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LowerRestController {
 
     /**
-     * Metoda klasy LowerRestController pozwalająca na obsługę rządania
+     * Metoda klasy LowerRestController pozwalająca na obsługę żądania
      * zamiany liter z wielkich na małe
      * Przykładowy url:
      * http://localhost:8080/api/lower?text=TEKST

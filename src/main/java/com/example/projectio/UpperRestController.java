@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UpperRestController {
 
     /**
-     * Metoda klasy UpperRestController pozwalająca na obsługę rządania
+     * Metoda klasy UpperRestController pozwalająca na obsługę żądania
      * zamiany liter z małych na wielkie
      * Przykładowy url:
      * http://localhost:8080/api/upper?text=tekst

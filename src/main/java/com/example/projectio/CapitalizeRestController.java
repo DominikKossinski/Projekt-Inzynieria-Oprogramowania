@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CapitalizeRestController {
 
     /**
-     * Metoda klasy CapitalizeRestController pozwalająca na obsługę rządania
+     * Metoda klasy CapitalizeRestController pozwalająca na obsługę żądania
      * zamiany pierwszych liter w każdym wyrazie w podanym tekscie na wielkie
      * Przykładowy url:
      * http://localhost:8080/api/capitalize?text=przykladowy tekst

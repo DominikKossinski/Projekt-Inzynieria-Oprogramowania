@@ -44,8 +44,8 @@ public class Translator {
     }
 
     /**
-     * Metoda klasy Translator pozwalająca na zmianę welkośći pierwszej litery
-     * każdego wyrazu w zdaniu na wileką
+     * Metoda klasy Translator pozwalająca na zmianę welkości pierwszej litery
+     * każdego wyrazu w zdaniu na wielką
      * @param text  - (String) tekst do translacji
      * @return (String) tekst po zastosowaniu translacji w którym pierwsza litera każdego wyrazu jest wielka
      */

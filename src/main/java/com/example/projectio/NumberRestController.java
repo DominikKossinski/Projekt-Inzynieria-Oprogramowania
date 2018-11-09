@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Metoda klasy NumberRestController pozwalająca na obsługę rządania
+ * Metoda klasy NumberRestController pozwalająca na obsługę żądania
  * zamiany liczb zapisanych cyframi na ich reprezentację słowną
  * Przykładowy url:
  * http://localhost:8080/api/numbers?text=100 zlotych
