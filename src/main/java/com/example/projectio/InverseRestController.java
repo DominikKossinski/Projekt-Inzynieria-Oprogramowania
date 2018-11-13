@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Mariusz
  */
+
 @RestController
 public class InverseRestController {
     /**

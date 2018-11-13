@@ -10,6 +10,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import static java.lang.Character.isUpperCase;
 
+
+/**
+ * Klasa Translator udostępniająca metody do przetwarzania tekstów
+ *
+ * @author Dominik, Krzysztof, Mariusz, Szymon
+ */
+
 public class Translator {
 
     /**
@@ -108,7 +115,7 @@ public class Translator {
     }
 
     /**
-     * Metoda klasy Translator pozwalająca na zamianę liczb pisanych cyframi na ich słowną reprezentację
+     * Metoda klasy Translator pozwalająca na zamianę liczb pisanych cyframi na ich słowną reprezentacje
      *
      * @param text  - (String) tekst do translacji
      * @return (String) tekst po zastosowaniu translacji w którym wszystkie liczby pisane cyframi zostają
@@ -151,10 +158,6 @@ public class Translator {
     private static final String[] HUNDRETS = {"sto", "dwieście", "trzysta", "czterysta", "pięćset", "sześćset", "siedemset",
             "osiemset", "dziewięćset"};
 
-
-    /**
-     * Metoda wspomagająca metodę expandNumber()
-     */
 
     private static String change_on_word_pol(String w) {
 
