@@ -30,11 +30,19 @@ public class Translator {
 
     public static String toUpperCase(String text) {return text.toUpperCase(); }
 
+    /**
+     * Metoda służąca do obracania tekstu przekazanego jako parametr
+     * z zachowaniem wielkości znaków na odpowiednich pozycjach
+     *
+     * @param text - (String) tekst do obrócenia
+     * @return (String) tekst po obróceniu
+     */
+
     public static String toInverse(String text){
         int [] letterSize = new int[text.length()];
         String newText = "";
         String inversed = "";
-        for(int i = 0; i < text.length(); i++){
+        for(int i = 0; i < text.length(); i++){ // obracanie tekstu oraz zapisywanie wielkości liter
             if(isUpperCase(text.charAt(i))){
                 letterSize[i] = 1;
             }
@@ -42,7 +50,7 @@ public class Translator {
                 letterSize[i] = 0;
             newText = text.charAt(i) + newText;
         }
-        for(int i = 0; i < text.length(); i++){
+        for(int i = 0; i < text.length(); i++){ // powiększanie oraz pomniejszanie właściwych liter
             if(letterSize[i] == 1)
                 inversed += Character.toUpperCase(newText.charAt(i));
             else

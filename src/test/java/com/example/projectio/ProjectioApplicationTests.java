@@ -59,4 +59,8 @@ public class ProjectioApplicationTests {
         assert (Translator.toCapitalize("Test TEST test").compareTo("Test Test Test")==0);
     }
 
+    @Test
+    public void inverseTest() {
+        assert (InverseRestController.inverseText("MarIusz Nie UmiE pIsAc").compareTo("CasIp eiMu eIn ZsuIrAm") == 0);
+    }
 }
