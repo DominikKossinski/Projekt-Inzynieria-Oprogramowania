@@ -1,6 +1,7 @@
 package com.example.projectio;
 
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -10,6 +11,41 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ProjectioApplicationTests {
 
     @Test
+    public void myShortCutsExpandTest() {
+        MyShortcutsRestController restController = new MyShortcutsRestController();
+        restController.deleteMyShortcut("DK");
+        assert (restController.createMyShortCut(false, "DK;Dominik").compareTo("True") == 0);
+        assert (Translator.expandMyShortcuts("DK mDKabc").compareTo("Dominik mDominikabc") == 0);
+        assert (restController.deleteMyShortcut("DK").compareTo("True") == 0);
+        assert (restController.deleteMyShortcut("DK").compareTo("NO SHORTCUT DK FOUND") == 0);
+    }
+
+    @Test
+    public void myShortcutsRestControllerTest() {
+        MyShortcutsRestController restController = new MyShortcutsRestController();
+        restController.deleteMyShortcut("DK");
+        assert (restController.createMyShortCut(false, "DK;Dominik").compareTo("True") == 0);
+        assert (restController.expandMyShortcuts("DKDK").compareTo("DominikDominik") == 0);
+        assert (restController.createMyShortCut(false, "DK;ok").compareTo("Waring REPLACE!") == 0);
+        assert (restController.createMyShortCut(true, "DK;ok").compareTo("True replace") == 0);
+        assert (restController.expandMyShortcuts("DK").compareTo("ok") == 0);
+        assert (restController.deleteMyShortcut("DK").compareTo("True") == 0);
+        assert (restController.deleteMyShortcut("DK").compareTo("NO SHORTCUT DK FOUND") == 0);
+    }
+
+    @DisplayName(value = "First MultiTranslationTest")
+    public void acceptGetMultiTranslation() {
+        assert (MultiTranslationRestController.getMultiTranslation(
+                "Kossa 123 prof.", "[\"upper\", \"capitalize\"]")
+                .compareTo("Kossa 123 Prof.") == 0);
+        assert (MultiTranslationRestController.getMultiTranslation(
+                "Kossa 123 prof.", "[\"upper\", \"expandNumbers\"]")
+                .compareTo("KOSSA sto dwadzieścia trzy PROF.") == 0);
+
+    }
+
+
+    @Test
     public void contextLoads() {
     }
     @Test
@@ -17,5 +53,10 @@ public class ProjectioApplicationTests {
         assert(Translator.expandNumbers("Szymon to gosc na 102").compareTo("Szymon to gosc na sto dwa") == 0);
     }
 
+
+    @Test
+    public void capitalizeTest(){
+        assert (Translator.toCapitalize("Test TEST test").compareTo("Test Test Test")==0);
+    }
 
 }
