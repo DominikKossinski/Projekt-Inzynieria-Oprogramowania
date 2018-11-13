@@ -4,6 +4,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * RestController odpowiadający za zmianę wielkości liter na małe
+ *
+ * @author Dominik
+ */
+
 @RestController
 public class LowerRestController {
 
@@ -15,6 +21,7 @@ public class LowerRestController {
      *
      * @param text     - (String) tekst do translacji podany przez użytkownika
      * @return (String) tekst po zastosowaniu translacji rządanych przez użytkownika
+     * @see Translator#toLowerCase(String)
      */
 
     @GetMapping("/api/lower")

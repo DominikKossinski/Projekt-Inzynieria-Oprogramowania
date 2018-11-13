@@ -4,13 +4,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Przykładowy RestController
+ * RestController odpowiadający za obsługę strony głównej
+ *
+ * @author Dominik
  */
+
 @RestController
 public class MyRestController {
 
     /**
-     * Przykładowa metoda
+     * Przykładowa metoda zwracająca Hello World
      *
      * @return - Hello World
      */

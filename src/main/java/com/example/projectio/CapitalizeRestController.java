@@ -7,6 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * RestController odpowiadający za zmianę  pierwszych liter wyrazów na wielkie
+ *
+ * @author Krzysztof
+ */
+
+
 @RestController
 public class CapitalizeRestController {
 
@@ -20,6 +27,7 @@ public class CapitalizeRestController {
      *
      * @param text     - (String) tekst do translacji podany przez użytkownika
      * @return (String) tekst po zastosowaniu translacji rządanych przez użytkownika
+     * @see Translator#toCapitalize(String)
      */
 
     @GetMapping("/api/capitalize")
