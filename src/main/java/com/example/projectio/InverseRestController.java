@@ -4,6 +4,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 /**
  * RestController odpowiadający za obracanie podanego tekstu z zachowaniem
  * wielkości liter na odpowiednich pozycjach
@@ -24,8 +28,17 @@ public class InverseRestController {
      *                  liter
      * @see Translator#toInverse(String)
      */
+  
+    private static final Logger logger = LoggerFactory.getLogger(InverseRestController.class);
+  
     @GetMapping("/api/inverse")
     public static String inverseText(@RequestParam(name = "text") String text) {
-        return Translator.toInverse(text);
+      
+       logger.info("Rozpoczynam translację metodą inverse");
+        
+       return Translator.toInverse(text);
     }
+  
 }
+
+
