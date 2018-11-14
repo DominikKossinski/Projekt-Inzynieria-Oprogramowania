@@ -240,7 +240,7 @@ public class Translator {
      * Metoda klasy translator służąca do zamiany części przecinkowych liczby na słowa
      *
      * @param number - (int) części setne liczby
-     * @return (String) odpowiadający podanym częsciom setnym słowny opis
+     * @return (String) odpowiadający podanym częściom setnym słowny opis
      */
     private static String change_float_pol(int number) {
         int jednosci = number % 10;
