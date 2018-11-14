@@ -8,6 +8,7 @@ import org.json.simple.parser.ParseException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
 import static java.lang.Character.isUpperCase;
 
 
@@ -117,7 +118,7 @@ public class Translator {
     /**
      * Metoda klasy Translator pozwalająca na zamianę liczb pisanych cyframi na ich słowną reprezentacje
      *
-     * @param text  - (String) tekst do translacji
+     * @param zdanie  - (String) tekst do translacji
      * @return (String) tekst po zastosowaniu translacji w którym wszystkie liczby pisane cyframi zostają
      * zostają zastąpione przez ich słowne reprezentacje np. 100 - sto
      */
