@@ -5,11 +5,18 @@
 
     <groupId>com.example</groupId>
     <artifactId>projectio</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>projectio</name>
     <description>Projekt Inzynieria Oprogramowania</description>
+
+    <distributionManagement>
+        <site>
+            <id>www.yourcompany.com</id>
+            <url>scp://www.yourcompany.com/www/docs/project/</url>
+        </site>
+    </distributionManagement>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
