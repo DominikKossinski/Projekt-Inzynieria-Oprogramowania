@@ -20,8 +20,6 @@ public class MultiTranslationRestController {
     /**
      * Metoda klasy MultiTranslationRestController pozwalająca na obsługę żądania
      * składania wielu translacji na jednym podanym przez użytkownika tekscie
-     * Przykładowy url:
-     * http://localhost:8080/api/multiTranslation?text=Cos 100 prof.&translations=%5B%22capitalize%22%2C%20%22inverse%22%2C%20%22expandNumbers%22%2C%20%22expandShortcuts%22%5D
      *
      * @param text     - (String) tekst do translacji podany przez użytkownika
      * @param jsonText - (JSONArray) lista zawierająca nazwy żądanych przez użytkownika translacji

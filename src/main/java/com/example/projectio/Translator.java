@@ -8,6 +8,7 @@ import org.json.simple.parser.ParseException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
 import static java.lang.Character.isUpperCase;
 
 
@@ -19,9 +20,18 @@ import static java.lang.Character.isUpperCase;
 
 public class Translator {
 
+    private static final String[] FIRST = new String[]{"zero", "jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć"};
+    private static final String[] SECOND = new String[]{"dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście",
+            "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"};
+    private static final String[] first_float = {"", "jedna", "dwie", "trzy", "cztery", "pięć", "sześć",
+            "siedem", "osiem", "dziewieć"};
+    private static final String[] second_float = {"dziesięć", "jedynaście", "dwanaście", "trzynaście", "czternaście",
+            "piętnaście", "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"};
+
     /**
      * Metoda klasy Translator pozwalająca na zmianę wielkość liter na małe
-     * @param text  - (String) tekst do translacji
+     *
+     * @param text - (String) tekst do translacji
      * @return (String) tekst po zastosowaniu translacji w którym każda litera jest mała
      */
 
@@ -31,11 +41,14 @@ public class Translator {
 
     /**
      * Metoda klasy Translator pozwalająca na zmianę wielkość liter na wielkie
-     * @param text  - (String) tekst do translacji
+     *
+     * @param text - (String) tekst do translacji
      * @return (String) tekst po zastosowaniu translacji w którym każda litera jest wielka
      */
 
-    public static String toUpperCase(String text) {return text.toUpperCase(); }
+    public static String toUpperCase(String text) {
+        return text.toUpperCase();
+    }
 
     /**
      * Metoda służąca do obracania tekstu przekazanego jako parametr
@@ -45,20 +58,19 @@ public class Translator {
      * @return (String) tekst po obróceniu
      */
 
-    public static String toInverse(String text){
-        int [] letterSize = new int[text.length()];
+    public static String toInverse(String text) {
+        int[] letterSize = new int[text.length()];
         String newText = "";
         String inversed = "";
-        for(int i = 0; i < text.length(); i++){ // obracanie tekstu oraz zapisywanie wielkości liter
-            if(isUpperCase(text.charAt(i))){
+        for (int i = 0; i < text.length(); i++) { // obracanie tekstu oraz zapisywanie wielkości liter
+            if (isUpperCase(text.charAt(i))) {
                 letterSize[i] = 1;
-            }
-            else
+            } else
                 letterSize[i] = 0;
             newText = text.charAt(i) + newText;
         }
-        for(int i = 0; i < text.length(); i++){ // powiększanie oraz pomniejszanie właściwych liter
-            if(letterSize[i] == 1)
+        for (int i = 0; i < text.length(); i++) { // powiększanie oraz pomniejszanie właściwych liter
+            if (letterSize[i] == 1)
                 inversed += Character.toUpperCase(newText.charAt(i));
             else
                 inversed += Character.toLowerCase(newText.charAt(i));
@@ -69,12 +81,12 @@ public class Translator {
     /**
      * Metoda klasy Translator pozwalająca na zmianę welkości pierwszej litery
      * każdego wyrazu w zdaniu na wielką
-     * @param text  - (String) tekst do translacji
+     *
+     * @param text - (String) tekst do translacji
      * @return (String) tekst po zastosowaniu translacji w którym pierwsza litera każdego wyrazu jest wielka
      */
 
-    public static String toCapitalize(String text)
-    {
+    public static String toCapitalize(String text) {
         text = text.toLowerCase();
 
         StringBuilder result = new StringBuilder(text.length());
@@ -82,13 +94,18 @@ public class Translator {
         for (int i = 0; i < words.length; i++)
             result.append(Character.toUpperCase(words[i].charAt(0))).append(words[i].substring(1)).append(" ");
 
-        return result.toString().substring(0,result.length()-1);
+        return result.toString().substring(0, result.length() - 1);
     }
+
+    private static final String[] OTHERS = {"dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt",
+            "siedemdziesiąt", "osiemdziesiąt", "dziewięćdziesiąt"};
+    private static final String[] HUNDRETS = {"sto", "dwieście", "trzysta", "czterysta", "pięćset", "sześćset", "siedemset",
+            "osiemset", "dziewięćset"};
 
     /**
      * Metoda klasy Translator pozwalająca na rozwijanie podstawowych skrótów
      *
-     * @param text  - (String) tekst do translacji
+     * @param text - (String) tekst do translacji
      * @return (String) tekst po zastosowaniu translacji w którym podane poniżej skróty
      * zostają zastąpione przez ich pełne rozwinięcia
      */
@@ -109,6 +126,12 @@ public class Translator {
         text = text.replace("hab.", "habilitowany");
         text = text.replace("Hab.", "Habilitowany");
 
+        text = text.replace("np.", "na przykład");
+        text = text.replace("Np.", "Na przykład");
+
+        text = text.replace("itp.", "i tym podobne");
+        text = text.replace("Itp.", "I tym podobne");
+
 
         return text;
 
@@ -117,7 +140,7 @@ public class Translator {
     /**
      * Metoda klasy Translator pozwalająca na zamianę liczb pisanych cyframi na ich słowną reprezentacje
      *
-     * @param text  - (String) tekst do translacji
+     * @param zdanie - (String) tekst do translacji
      * @return (String) tekst po zastosowaniu translacji w którym wszystkie liczby pisane cyframi zostają
      * zostają zastąpione przez ich słowne reprezentacje np. 100 - sto
      */
@@ -130,17 +153,37 @@ public class Translator {
         int i = 0;
         for (String w : arr) {
 
-            try{
-                if(Integer.valueOf(w) >=0 && Integer.valueOf(w) < 1000) {
+            try {
+                if (Integer.valueOf(w) >= 0 && Integer.valueOf(w) < 1000) {
                     x += " " + change_on_word_pol(w);
-                }
-                else x += " " + w;
-            }
-            catch (NumberFormatException e){
-                if(i == 0) {
+                } else x += " " + w;
+            } catch (NumberFormatException e) {
+                if (w.contains(".")) {
+                    try {
+                        float liczba = Float.valueOf(w);
+                        int l = (int) Math.floor(liczba);
+                        int przecinek = Math.round((liczba - (float) l) * 100.f);
+                        if (i == 0) {
+                            x += change_on_word_pol(String.valueOf(l));
+                            if (przecinek > 0) {
+                                x += " i " + change_float_pol(przecinek);
+                            }
+                        } else {
+                            x += " " + change_on_word_pol(String.valueOf(l));
+                            if (przecinek > 0) {
+                                x += " i " + change_float_pol(przecinek);
+                            }
+                        }
+                    } catch (NumberFormatException exception) {
+                        if (i == 0) {
+                            x += w;
+                        } else {
+                            x += " " + w;
+                        }
+                    }
+                } else if (i == 0) {
                     x += w;
-                }
-                else{
+                } else {
                     x += " " + w;
                 }
             }
@@ -150,70 +193,73 @@ public class Translator {
         return x;
     }
 
-    private static final String[] FIRST = new String[]{"zero" , "jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć"};
-    private static final String[] SECOND = new String[] {"dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście",
-            "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"};
-    private static final String[] OTHERS = {"dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt",
-            "siedemdziesiąt", "osiemdziesiąt", "dziewięćdziesiąt"};
-    private static final String[] HUNDRETS = {"sto", "dwieście", "trzysta", "czterysta", "pięćset", "sześćset", "siedemset",
-            "osiemset", "dziewięćset"};
-
-
     private static String change_on_word_pol(String w) {
 
         String x = "";
         int number = Integer.valueOf(w);
 
-        if (number<10){
+        if (number < 10) {
             x += FIRST[number];
             return x;
-        }
+        } else if (number < 20) {
 
-        else if (number<20){
-
-            x+= SECOND[number-10];
+            x += SECOND[number - 10];
             return x;
-        }
-
-        else if (number%10==0 && (String.valueOf(number).length())<3){
-            x+= OTHERS[Integer.valueOf((number/10)-2)];
+        } else if (number % 10 == 0 && (String.valueOf(number).length()) < 3) {
+            x += OTHERS[Integer.valueOf((number / 10) - 2)];
             return x;
-        }
-
-        else if (number%10!=0 && (String.valueOf(number).length())<3){
-            x+= OTHERS[Integer.valueOf((number/10)-2)];
-            x+=" "+ FIRST[Integer.valueOf((number%10))];
+        } else if (number % 10 != 0 && (String.valueOf(number).length()) < 3) {
+            x += OTHERS[Integer.valueOf((number / 10) - 2)];
+            x += " " + FIRST[Integer.valueOf((number % 10))];
             return x;
-        }
+        } else if (number % 10 == 0 && String.valueOf(number).length() == 3 && number % 100 == 0) {
 
-        else if (number%10==0 && String.valueOf(number).length() == 3 && number% 100 == 0){
-
-            x+= HUNDRETS[Integer.valueOf((number/100)-1)];   //pięćset itp.
+            x += HUNDRETS[Integer.valueOf((number / 100) - 1)];   //pięćset itp.
             return x;
-        }
+        } else {
+            x += HUNDRETS[Integer.valueOf((number / 100) - 1)];
 
-        else {
-            x += HUNDRETS[Integer.valueOf((number/100)-1)];
-
-            if(number%10 == 0){
-                x += " " + OTHERS[Integer.valueOf((number%100)/10-2)];
+            if (number % 10 == 0) {
+                x += " " + OTHERS[Integer.valueOf((number % 100) / 10 - 2)];
+                return x;
+            } else if (Integer.valueOf(number / 10) % 10 == 0) {
+                x += " " + change_on_word_pol(String.valueOf(number % 10));
+                return x;
+            } else if (Integer.valueOf(number / 10) % 10 == 1) {
+                x += " " + change_on_word_pol(String.valueOf(number % 100));
+                return x;
+            } else {
+                x += " " + OTHERS[(number / 10) % 10 - 2];
+                x += " " + change_on_word_pol(String.valueOf(number % 10));
                 return x;
             }
+        }
+    }
 
-            else if (Integer.valueOf(number/10)%10 == 0){
-                x += " " + change_on_word_pol(String.valueOf(number%10));
-                return x;
-            }
-
-            else if(Integer.valueOf(number/10)%10 == 1){
-                x+=" " + change_on_word_pol(String.valueOf(number%100));
-                return x;
-            }
-
-            else{
-                x += " " + OTHERS[(number/10)%10-2];
-                x += " " + change_on_word_pol(String.valueOf(number%10));
-                return x;
+    /**
+     * Metoda klasy translator służąca do zamiany części przecinkowych liczby na słowa
+     *
+     * @param number - (int) części setne liczby
+     * @return (String) odpowiadający podanym częsciom setnym słowny opis
+     */
+    private static String change_float_pol(int number) {
+        int jednosci = number % 10;
+        int dziesietki = number / 10;
+        if (dziesietki < 1 && jednosci == 1) {
+            return first_float[jednosci] + " setna";
+        } else if (dziesietki < 1 && jednosci < 5) {
+            return first_float[jednosci] + " setne";
+        } else if (dziesietki < 1) {
+            return first_float[jednosci] + " setnych";
+        } else if (dziesietki < 2) {
+            return second_float[jednosci] + " setnych";
+        } else {
+            if (jednosci == 0) {
+                return OTHERS[dziesietki - 2] + " setnych";
+            } else if (jednosci == 1) {
+                return OTHERS[dziesietki - 2] + " jeden setnych";
+            } else {
+                return OTHERS[dziesietki - 2] + " " + first_float[jednosci] + " setnych";
             }
         }
     }

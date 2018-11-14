@@ -8,6 +8,9 @@ addons:
     - oracle-java9-installer
 before_install:
 - chmod +x mvnw
+install: mvn clean install -P-quality-checks -DskipTests
+script:
+- mvn install
 notifications:
   email:
     on_success: always
