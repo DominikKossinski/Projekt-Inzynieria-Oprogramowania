@@ -33,7 +33,7 @@ public class Translator {
     private static final String[] second_float = {"dziesięć", "jedynaście", "dwanaście", "trzynaście", "czternaście",
             "piętnaście", "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"};
 
-    private static final String[] FIRST_TEN = new String[]{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+    private static final String[] FIRST_TEN = new String[]{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
     private static final String[] SECOND_TEN = new String[] {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
             "sixteen", "seventeen", "eighteen", "nineteen"};
     private static final String[] OTHER_TENS = {"twenty", "thirty", "forty", "fifty", "sixty", "seventy",
@@ -200,7 +200,13 @@ public class Translator {
                     } else if (language.compareTo("eng") == 0) {
 
                         int num = (int)liczba;
-                        x += change_on_word_eng(String.valueOf(num));  //Zamiana liczby przed przecinkiem
+                        if(i == 0){
+                            x += change_on_word_eng(String.valueOf(num));  //Zamiana liczby przed przecinkiem
+                        } else{
+
+                            x += " " + change_on_word_eng(String.valueOf(num));  //Zamiana liczby przed przecinkiem
+                        }
+
                         liczba = 100 * (liczba - (int)liczba);
                         liczba = Math.round(liczba);
                         if( (int)(liczba/10)%10 != 0){
@@ -244,7 +250,7 @@ public class Translator {
 
         if (number<10){
 
-            x += FIRST_TEN[number-1];
+            x += FIRST_TEN[number];
             return x;
         }
 
@@ -261,7 +267,7 @@ public class Translator {
 
         else if (number%10!=0 && (String.valueOf(number).length())<3){
             x+= OTHER_TENS[Integer.valueOf((number/10)-2)];
-            x+=" "+FIRST_TEN[Integer.valueOf((number%10)-1)];
+            x+=" "+FIRST_TEN[Integer.valueOf((number%10))];
             return x;
         }
 
