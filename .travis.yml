@@ -11,7 +11,6 @@ before_install:
 install: mvn clean install -P-quality-checks -DskipTests
 script:
 - mvn install
-after_script: mvn site site:deploy
 notifications:
   email:
     on_success: always

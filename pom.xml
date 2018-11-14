@@ -11,13 +11,6 @@
     <name>projectio</name>
     <description>Projekt Inzynieria Oprogramowania</description>
 
-    <distributionManagement>
-        <site>
-            <id>www.yourcompany.com</id>
-            <url>scp://www.yourcompany.com/www/docs/project/</url>
-        </site>
-    </distributionManagement>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
