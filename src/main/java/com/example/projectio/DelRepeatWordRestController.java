@@ -21,7 +21,7 @@ public class DelRepeatWordRestController {
      *
      * @param text     - (String) tekst do translacji podany przez użytkownika
      * @return (String) tekst po zastosowaniu translacji żądanych przez użytkownika
-     * @see Translator#DelRepeatWords(String)
+     * @see Translator#delRepeatWords(String)
      */
 
 
