@@ -5,8 +5,9 @@ jdk: oraclejdk9
 services:
 - mysql
 addons:
-  sources:
-  - mysql-5.7-trusty
+  apt:
+    sources:
+    - mysql-5.7-trusty
     packages:
     - mysql-server
     - mysql-client
