@@ -19,9 +19,9 @@ public class ProjectioApplication {
         if (jdbcTemplate == null) {
             DriverManagerDataSource dataSource = new DriverManagerDataSource();
             dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-            dataSource.setUrl("...");
-            dataSource.setUsername("...");
-            dataSource.setPassword("...");
+            dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/test");
+            dataSource.setUsername("root");
+            dataSource.setPassword("password");
             jdbcTemplate = new JdbcTemplate(dataSource);
         }
         return jdbcTemplate;
