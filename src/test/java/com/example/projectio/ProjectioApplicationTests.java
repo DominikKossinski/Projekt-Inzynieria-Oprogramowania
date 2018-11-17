@@ -4,18 +4,21 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@ContextConfiguration(locations = "classpath*:/spring/applicationContext.xml")
 public class ProjectioApplicationTests {
+
 
     @Test
     public void myShortCutsExpandTest() {
         MyShortcutsRestController restController = new MyShortcutsRestController();
         restController.deleteMyShortcut("DK");
         assert (restController.createMyShortCut(false, "DK;Dominik").compareTo("True") == 0);
-        assert (Translator.expandMyShortcuts("DK mDKabc").compareTo("Dominik mDominikabc") == 0);
+        assert (new Translator().expandMyShortcuts("DK mDKabc").compareTo("Dominik mDominikabc") == 0);
         assert (restController.deleteMyShortcut("DK").compareTo("True") == 0);
         assert (restController.deleteMyShortcut("DK").compareTo("NO SHORTCUT DK FOUND") == 0);
     }
