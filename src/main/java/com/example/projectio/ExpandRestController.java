@@ -21,7 +21,7 @@ public class ExpandRestController {
      * http://localhost:8080/api/expandShortcuts?text=dr. Krzysztof
      *
      * @param text     - (String) tekst do translacji podany przez użytkownika
-     * @return (String) tekst po zastosowaniu translacji rządanych przez użytkownika
+     * @return (String) tekst po zastosowaniu translacji żądanych przez użytkownika
      * @see Translator#expandShortcuts(String)
      */
 

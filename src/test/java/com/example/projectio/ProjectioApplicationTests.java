@@ -63,4 +63,13 @@ public class ProjectioApplicationTests {
     public void inverseTest() {
         assert (InverseRestController.inverseText("MarIusz Nie UmiE pIsAc").compareTo("CasIp eiMu eIn ZsuIrAm") == 0);
     }
+
+    @Test
+    public void deleteRepeatsTest() {
+        assert (Translator.delRepeatWords("Ide do do sklepu").compareTo("Ide do sklepu") == 0);
+        assert (Translator.delRepeatWords("Ide Ide do do sklepu sklepu").compareTo("Ide do sklepu") == 0);
+        assert (Translator.delRepeatWords("PODWOJNY Mariusz Mariusz").compareTo("PODWOJNY Mariusz") == 0);
+        assert (Translator.delRepeatWords("Wczoraj Wczoraj bylem na uczelni, bylo super super").compareTo("Wczoraj bylem na uczelni, bylo super") == 0);
+        assert (Translator.delRepeatWords("Nie Nie moge moge sie sie doczekac doczekac kolejnego kolejnego wykladu").compareTo("Nie moge sie doczekac kolejnego wykladu") == 0);
+    }
 }
