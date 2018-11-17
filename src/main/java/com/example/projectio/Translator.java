@@ -282,4 +282,37 @@ public class Translator {
         return text;
 
     }
+
+
+    /**
+     * Metoda służąca do usuwania powtórzeń w zdaniu
+     *
+     * @param text - (String) tekst w którym mają zostać usunięte powtórzenia
+     * @return (String) tekst po usunięciu powtórzeń
+     */
+
+    public static String delRepeatWords(String text)
+    {
+
+        StringBuilder result = new StringBuilder(text.length());
+        String words[] = text.split("\\ ");
+        for (int i = 0; i < words.length - 1; i++)
+        {
+            if(words[i].equals(words[i+1]))
+            {
+                words[i+1] = "del";
+            }
+
+        }
+
+        for(int i = 0; i < words.length; i++) {
+            if(words[i].equals("del"))
+                continue;
+            result.append(words[i]).append(" ");
+
+        }
+
+            return result.toString().substring(0, result.length() - 1);
+    }
+
 }
