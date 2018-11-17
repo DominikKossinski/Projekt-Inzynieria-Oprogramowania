@@ -18,7 +18,7 @@ before_install:
 - sudo service mysql restart
 - chmod +x mvnw
 - mysql -u root -ppassword -e "CREATE DATABASE IF NOT EXISTS test;"
-- mysql -u root -ppassword - e "CREATE TABLE IF NOT EXISTS SKROTY(SKROT VARCHAR(255) UNIQUE NOT NULL, ROZWINIECIE VARCHAR(255) NOT NULL);"
+- mysql -u root -ppassword -e "CREATE TABLE IF NOT EXISTS SKROTY(SKROT VARCHAR(255) UNIQUE NOT NULL, ROZWINIECIE VARCHAR(255) NOT NULL);"
 install: mvn clean install -P-quality-checks -DskipTests
 script:
 - mvn install
