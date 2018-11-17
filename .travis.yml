@@ -14,11 +14,11 @@ addons:
     - oracle-java9-installer
 before_install:
 - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('password') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
-- sudo mysql_upgrade -u root -ppassword
+- sudo mysql_upgrade -u root -p password
 - sudo service mysql restart
 - chmod +x mvnw
-- mysql -e 'CREATE DATABASE IF NOT EXISTS test;' -u root -ppassword
-- mysql -e 'CREATE TABLE IF NOT EXISTS SKROTY(SKROT VARCHAR(255) UNIQUE NOT NULL, ROZWINIECIE VARCHAR(255) NOT NULL);' -u root -ppassword
+- mysql -e 'CREATE DATABASE IF NOT EXISTS test;' -u root -p password
+- mysql -e 'CREATE TABLE IF NOT EXISTS SKROTY(SKROT VARCHAR(255) UNIQUE NOT NULL, ROZWINIECIE VARCHAR(255) NOT NULL);' -u root -p password
 install: mvn clean install -P-quality-checks -DskipTests
 script:
 - mvn install
