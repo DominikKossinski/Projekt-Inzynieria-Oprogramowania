@@ -1,6 +1,6 @@
 # Projekt-Inzynieria-Oprogramowania
 
-![Build status](https://travis-ci.org/DominikKossinski/Projekt-Inzynieria-Oprogramowania.svg?branch=master)
+![Build status](https://travis-ci.org/DominikKossinski/Projekt-Inzynieria-Oprogramowania.svg?branch=master) \n
 
 Podsumowanie pierwszego sprintu:.
  Co jako zespół chcemy zacząć robić:
