@@ -45,7 +45,7 @@ public class MultiTranslationRestController {
                 } else if (actTranslation.compareTo("expandNumbers") == 0) {
                     text = Translator.expandNumbers(text, "pl");
                 } else if (actTranslation.compareTo("expandMyShortcuts") == 0) {
-                    text = Translator.expandMyShortcuts(text);
+                    text = new Translator().expandMyShortcuts(text);
                 }
             }
             return text;

@@ -1,13 +1,9 @@
 package com.example.projectio;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import com.example.projectio.Data.Shortcut;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.List;
 
 import static java.lang.Character.isUpperCase;
 
@@ -383,6 +379,7 @@ public class Translator {
         }
     }
 
+
     /**
      * Metoda służąca do rozwijania zdefiniowanych przez użytkownika skrótów
      * w tekście przekazywanym jako parametr.
@@ -390,20 +387,51 @@ public class Translator {
      * @param text - (String) tekst, w którym sktóty mają zostać rozwinięte
      * @return (String) tekst po rozwinięciu skrótów
      */
-    public static String expandMyShortcuts(String text) {
-        File file = new File("src/main/resources/myShortcuts.json");
-        try {
-            FileReader reader = new FileReader(file);
-            JSONParser parser = new JSONParser();
-            JSONArray array = (JSONArray) parser.parse(reader);
-            for (Object object : array) {
-                JSONObject shortcut = (JSONObject) object;
-                text = text.replace(shortcut.get("shortcut").toString(), shortcut.get("expanded").toString());
+    public String expandMyShortcuts(String text) {
+        JdbcTemplate jdbcTemplate = ProjectioApplication.getJdbcTemplate();
+        List<Shortcut> shortcuts = jdbcTemplate.query("SELECT * FROM SKROTY",
+                (rs, arg1) -> {
+                    return new Shortcut(rs.getString("SKROT"), rs.getString("ROZWINIECIE"));
+                });
+        if (shortcuts.size() > 0) {
+            for (Shortcut shortcut : shortcuts) {
+                text = text.replace(shortcut.getShortcut(), shortcut.getExpandedShortcut());
             }
-            return text;
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-            return "ERROR";
         }
+        return text;
+
     }
+
+
+    /**
+     * Metoda służąca do usuwania powtórzeń w zdaniu
+     *
+     * @param text - (String) tekst w którym mają zostać usunięte powtórzenia
+     * @return (String) tekst po usunięciu powtórzeń
+     */
+
+    public static String delRepeatWords(String text)
+    {
+
+        StringBuilder result = new StringBuilder(text.length());
+        String words[] = text.split("\\ ");
+        for (int i = 0; i < words.length - 1; i++)
+        {
+            if(words[i].equals(words[i+1]))
+            {
+                words[i+1] = "del";
+            }
+
+        }
+
+        for(int i = 0; i < words.length; i++) {
+            if(words[i].equals("del"))
+                continue;
+            result.append(words[i]).append(" ");
+
+        }
+
+            return result.toString().substring(0, result.length() - 1);
+    }
+
 }

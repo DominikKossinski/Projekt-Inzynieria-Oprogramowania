@@ -20,7 +20,7 @@ public class LowerRestController {
      * http://localhost:8080/api/lower?text=TEKST
      *
      * @param text     - (String) tekst do translacji podany przez użytkownika
-     * @return (String) tekst po zastosowaniu translacji rządanych przez użytkownika
+     * @return (String) tekst po zastosowaniu translacji żądanych przez użytkownika
      * @see Translator#toLowerCase(String)
      */
 

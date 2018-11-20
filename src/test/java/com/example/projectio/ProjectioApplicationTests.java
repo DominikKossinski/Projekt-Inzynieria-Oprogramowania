@@ -4,18 +4,21 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@ContextConfiguration(locations = "classpath*:/spring/applicationContext.xml")
 public class ProjectioApplicationTests {
+
 
     @Test
     public void myShortCutsExpandTest() {
         MyShortcutsRestController restController = new MyShortcutsRestController();
         restController.deleteMyShortcut("DK");
         assert (restController.createMyShortCut(false, "DK;Dominik").compareTo("True") == 0);
-        assert (Translator.expandMyShortcuts("DK mDKabc").compareTo("Dominik mDominikabc") == 0);
+        assert (new Translator().expandMyShortcuts("DK mDKabc").compareTo("Dominik mDominikabc") == 0);
         assert (restController.deleteMyShortcut("DK").compareTo("True") == 0);
         assert (restController.deleteMyShortcut("DK").compareTo("NO SHORTCUT DK FOUND") == 0);
     }
@@ -75,5 +78,14 @@ public class ProjectioApplicationTests {
     @Test
     public void inverseTest() {
         assert (InverseRestController.inverseText("MarIusz Nie UmiE pIsAc").compareTo("CasIp eiMu eIn ZsuIrAm") == 0);
+    }
+
+    @Test
+    public void deleteRepeatsTest() {
+        assert (Translator.delRepeatWords("Ide do do sklepu").compareTo("Ide do sklepu") == 0);
+        assert (Translator.delRepeatWords("Ide Ide do do sklepu sklepu").compareTo("Ide do sklepu") == 0);
+        assert (Translator.delRepeatWords("PODWOJNY Mariusz Mariusz").compareTo("PODWOJNY Mariusz") == 0);
+        assert (Translator.delRepeatWords("Wczoraj Wczoraj bylem na uczelni, bylo super super").compareTo("Wczoraj bylem na uczelni, bylo super") == 0);
+        assert (Translator.delRepeatWords("Nie Nie moge moge sie sie doczekac doczekac kolejnego kolejnego wykladu").compareTo("Nie moge sie doczekac kolejnego wykladu") == 0);
     }
 }
