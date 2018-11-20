@@ -1,13 +1,10 @@
 package com.example.projectio;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.*;
 
 /**
  * RestController odpowiadający za tworzenie, usuwanie oraz rozwijanie
@@ -17,6 +14,17 @@ import java.io.*;
  */
 @RestController
 public class MyShortcutsRestController {
+
+    /**
+     * Logger używany do informowania o wykonujących się czynnościach.
+     */
+    private static final Logger logger = LoggerFactory.getLogger(MyShortcutsRestController.class);
+
+    /**
+     * Zmienna używana do wysyłania żądań do bazy danych.
+     */
+    private JdbcTemplate jdbcTemplate = ProjectioApplication.getJdbcTemplate();
+
 
     /**
      * Metoda klasy MyShortcutsRestController pozwalająca na obsługę żądania
@@ -31,7 +39,7 @@ public class MyShortcutsRestController {
      */
     @RequestMapping(value = "/api/expandMyShortcuts", method = RequestMethod.GET)
     public String expandMyShortcuts(@RequestParam(name = "text") String text) {
-        return Translator.expandMyShortcuts(text);
+        return new Translator().expandMyShortcuts(text);
     }
 
     /**
@@ -53,44 +61,32 @@ public class MyShortcutsRestController {
             consumes = MediaType.TEXT_PLAIN_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public String createMyShortCut(@RequestParam(name = "replace", defaultValue = "false") boolean replace,
                                    @RequestBody String text) {
-        File file = new File("src/main/resources/myShortcuts.json");
-        try {
-            FileReader reader = new FileReader(file);
-            JSONParser parser = new JSONParser();
-            JSONArray array = (JSONArray) parser.parse(reader);
-            String[] newShortcut = text.split(";");
-            for (int i = 0; i < array.size(); i++) {
-                JSONObject shortcut = (JSONObject) array.get(i);
-                if (shortcut.get("shortcut").toString().compareTo(newShortcut[0]) == 0 && !replace) {
-                    return "Waring REPLACE!";
-                } else if (shortcut.get("shortcut").toString().compareTo(newShortcut[0]) == 0 && replace) {
-                    array.remove(i);
-                    shortcut.put("expanded", newShortcut[1]);
-                    array.add(shortcut);
-                    reader.close();
-                    FileWriter fileWriter = new FileWriter(file);
-                    BufferedWriter writer = new BufferedWriter(fileWriter);
-                    writer.write(array.toJSONString());
-                    writer.flush();
-                    writer.close();
-                    return "True replace";
-                }
+        String[] newShortcut = text.split(";");
+        int sq = jdbcTemplate.queryForObject("SELECT COUNT(ROZWINIECIE) FROM SKROTY WHERE SKROT LIKE '"
+                + newShortcut[0] + "'", Integer.class);
+        if (!replace && sq == 1) {
+            logger.warn("Create MyShortcut: Warn Replace by " + newShortcut[0]);
+            return "Waring REPLACE!";
+        } else if (replace && sq == 1) {
+            int modified = jdbcTemplate.update("UPDATE SKROTY SET ROZWINIECIE = '" + newShortcut[1] +
+                    "' WHERE SKROT = '" + newShortcut[0] + "'");
+            if (modified == 1) {
+                return "True replace";
+            } else {
+                logger.error("Create MyShortcut: Error by " + newShortcut[0]);
+                return "False";
             }
-            JSONObject shortCut = new JSONObject();
-            shortCut.put("shortcut", newShortcut[0]);
-            shortCut.put("expanded", newShortcut[1]);
-            array.add(shortCut);
-            reader.close();
-            FileWriter fileWriter = new FileWriter(file);
-            BufferedWriter writer = new BufferedWriter(fileWriter);
-            writer.write(array.toJSONString());
-            writer.flush();
-            writer.close();
-
-            fileWriter.close();
-            return "True";
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
+        } else if (sq == 0) {
+            int modified = jdbcTemplate.update("INSERT INTO SKROTY(SKROT, ROZWINIECIE) VALUES ('"
+                    + newShortcut[0] + "', '" + newShortcut[1] + "')");
+            if (modified == 1) {
+                return "True";
+            } else {
+                logger.error("Create MyShortcut: Error by " + newShortcut[0]);
+                return "False";
+            }
+        } else {
+            logger.error("Create MyShortcut: Error by " + newShortcut[0]);
             return "False";
         }
     }
@@ -109,35 +105,15 @@ public class MyShortcutsRestController {
      */
     @RequestMapping(value = "/api/deleteMyShortcut/{shortcut}", method = RequestMethod.DELETE)
     public String deleteMyShortcut(@PathVariable("shortcut") String shortcut) {
-        File file = new File("src/main/resources/myShortcuts.json");
-        try {
-            FileReader reader = new FileReader(file);
-            JSONParser parser = new JSONParser();
-            JSONArray shortCuts = (JSONArray) parser.parse(reader);
-            reader.close();
-            boolean found = false;
-            int i;
-            for (i = 0; i < shortCuts.size(); i++) {
-                JSONObject jsonObject = (JSONObject) shortCuts.get(i);
-                if (jsonObject.get("shortcut").toString().compareTo(shortcut) == 0) {
-                    found = true;
-                    break;
-                }
-            }
-            if (found) {
-                shortCuts.remove(i);
-                FileWriter fileWriter = new FileWriter(file);
-                BufferedWriter writer = new BufferedWriter(fileWriter);
-                writer.write(shortCuts.toJSONString());
-                writer.flush();
-                writer.close();
-                fileWriter.close();
-                return "True";
-            } else {
-                return "NO SHORTCUT " + shortcut + " FOUND";
-            }
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
+        int modified = jdbcTemplate.update("DELETE FROM SKROTY WHERE SKROT LIKE '" + shortcut + "'");
+        if (modified == 0) {
+            logger.debug("Delete MyShortcut: NO SHORTCUT " + shortcut + " FOUND");
+            return "NO SHORTCUT " + shortcut + " FOUND";
+        } else if (modified == 1) {
+            logger.debug("Delete MyShortcut: DELETED " + shortcut);
+            return "True";
+        } else {
+            logger.warn("Delete MyShortcut: Error by " + shortcut);
             return "False";
         }
     }
