@@ -22,12 +22,14 @@ public class NumberRestController {
      * http://localhost:8080/api/numbers?text=100 zlotych
      *
      * @param text     - (String) tekst do translacji podany przez użytkownika
-     * @return (String) tekst po zastosowaniu translacji żądanych przez użytkownika
-     * @see Translator#expandNumbers(String)
+     * @param language - (String) wybrany język transformacji
+     * @return (String) tekst po zastosowaniu translacji rządanych przez użytkownika
+     * @see Translator#expandNumbers(String, String)
      */
 
     @GetMapping("/api/numbers")
-    public String getTextToNumbers(@RequestParam(name = "text") String text) {
-        return Translator.expandNumbers(text);
+    public String getTextToNumbers(@RequestParam(name = "text") String text,
+                                   @RequestParam(name = "lg", defaultValue = "pl", required = false) String language) {
+        return Translator.expandNumbers(text, language);
     }
 }

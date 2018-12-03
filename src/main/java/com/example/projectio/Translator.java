@@ -19,10 +19,23 @@ public class Translator {
     private static final String[] FIRST = new String[]{"zero", "jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć"};
     private static final String[] SECOND = new String[]{"dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście",
             "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"};
+    private static final String[] OTHERS = {"dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt",
+            "siedemdziesiąt", "osiemdziesiąt", "dziewięćdziesiąt"};
+    private static final String[] HUNDRETS = {"sto", "dwieście", "trzysta", "czterysta", "pięćset", "sześćset", "siedemset",
+            "osiemset", "dziewięćset"};
+
     private static final String[] first_float = {"", "jedna", "dwie", "trzy", "cztery", "pięć", "sześć",
             "siedem", "osiem", "dziewieć"};
     private static final String[] second_float = {"dziesięć", "jedynaście", "dwanaście", "trzynaście", "czternaście",
             "piętnaście", "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"};
+
+    private static final String[] FIRST_TEN = new String[]{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+    private static final String[] SECOND_TEN = new String[] {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+            "sixteen", "seventeen", "eighteen", "nineteen"};
+    private static final String[] OTHER_TENS = {"twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+            "eighty", "ninety"};
+    private static final String HUNDRED = "hundred";
+
 
     /**
      * Metoda klasy Translator pozwalająca na zmianę wielkość liter na małe
@@ -92,12 +105,6 @@ public class Translator {
 
         return result.toString().substring(0, result.length() - 1);
     }
-
-    private static final String[] OTHERS = {"dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt",
-            "siedemdziesiąt", "osiemdziesiąt", "dziewięćdziesiąt"};
-    private static final String[] HUNDRETS = {"sto", "dwieście", "trzysta", "czterysta", "pięćset", "sześćset", "siedemset",
-            "osiemset", "dziewięćset"};
-
     /**
      * Metoda klasy Translator pozwalająca na rozwijanie podstawowych skrótów
      *
@@ -128,7 +135,6 @@ public class Translator {
         text = text.replace("itp.", "i tym podobne");
         text = text.replace("Itp.", "I tym podobne");
 
-
         return text;
 
     }
@@ -137,12 +143,13 @@ public class Translator {
      * Metoda klasy Translator pozwalająca na zamianę liczb pisanych cyframi na ich słowną reprezentacje
      *
      * @param zdanie - (String) tekst do translacji
+     * @param language - (String) wybrany język do translacji
      * @return (String) tekst po zastosowaniu translacji w którym wszystkie liczby pisane cyframi zostają
      * zostają zastąpione przez ich słowne reprezentacje np. 100 - sto
      */
 
 
-    public static String expandNumbers(String zdanie) {
+    public static String expandNumbers(String zdanie, String language) {
         String[] arr = zdanie.split(" ", 0);
 
         String x = "";
@@ -151,12 +158,28 @@ public class Translator {
 
             try {
                 if (Integer.valueOf(w) >= 0 && Integer.valueOf(w) < 1000) {
-                    x += " " + change_on_word_pol(w);
+                    if(language.compareTo("pl") == 0){
+                        if(i == 0){
+                            x += change_on_word_pol(w);
+                        }else{
+                            x += " " + change_on_word_pol(w);
+                        }
+                    }
+
+                    else if(language.compareTo("eng") == 0) {
+                        if(i == 0){
+                            x += change_on_word_eng(w);
+                        }else{
+                            x += " " + change_on_word_eng(w);
+                        }
+                    }
                 } else x += " " + w;
             } catch (NumberFormatException e) {
-                if (w.contains(".")) {
-                    try {
-                        float liczba = Float.valueOf(w);
+                if (w.contains(".")) try {
+                    float liczba = Float.valueOf(w);
+
+                    if (language.compareTo("pl") == 0) {
+
                         int l = (int) Math.floor(liczba);
                         int przecinek = Math.round((liczba - (float) l) * 100.f);
                         if (i == 0) {
@@ -170,14 +193,35 @@ public class Translator {
                                 x += " i " + change_float_pol(przecinek);
                             }
                         }
-                    } catch (NumberFormatException exception) {
-                        if (i == 0) {
-                            x += w;
-                        } else {
-                            x += " " + w;
+                    } else if (language.compareTo("eng") == 0) {
+
+                        int num = (int)liczba;
+                        if(i == 0){
+                            x += change_on_word_eng(String.valueOf(num));  //Zamiana liczby przed przecinkiem
+                        } else{
+
+                            x += " " + change_on_word_eng(String.valueOf(num));  //Zamiana liczby przed przecinkiem
+                        }
+
+                        liczba = 100 * (liczba - (int)liczba);
+                        liczba = Math.round(liczba);
+                        if( (int)(liczba/10)%10 != 0){
+                            x += " point";
+                            x += " " + change_on_word_eng(String.valueOf((int)(liczba/10)%10));
+                        }
+                        if ((int)liczba%10 != 0){
+                            x += " " + change_on_word_eng(String.valueOf((int)liczba%10));
                         }
                     }
-                } else if (i == 0) {
+
+                } catch (NumberFormatException exception) {
+                    if (i == 0) {
+                        x += w;
+                    } else {
+                        x += " " + w;
+                    }
+                }
+                else if (i == 0) {
                     x += w;
                 } else {
                     x += " " + w;
@@ -188,6 +232,81 @@ public class Translator {
         }
         return x;
     }
+    /**
+     * Metoda klasy translator służąca do zamiany danej liczby na słowo
+     *
+     * @param w - (String) dana liczba
+     * @return (String) słowny opis liczby w języku angielskim
+     */
+
+    private static String change_on_word_eng(String w) {
+
+        String x = "";
+        int number = Integer.valueOf(w);
+
+        if (number<10){
+
+            x += FIRST_TEN[number];
+            return x;
+        }
+
+        else if (number<20){
+
+            x+= SECOND_TEN[number-10];
+            return x;
+        }
+
+        else if (number%10==0 && (String.valueOf(number).length())<3){
+            x+= OTHER_TENS[Integer.valueOf((number/10)-2)];
+            return x;
+        }
+
+        else if (number%10!=0 && (String.valueOf(number).length())<3){
+            x+= OTHER_TENS[Integer.valueOf((number/10)-2)];
+            x+=" "+FIRST_TEN[Integer.valueOf((number%10))];
+            return x;
+        }
+
+        else if (number%10==0 && String.valueOf(number).length() == 3 && number% 100 == 0){
+
+            x += change_on_word_eng(String.valueOf(number/100));
+            x+=" "+HUNDRED;
+            return x;
+        }
+
+        else {
+            x += change_on_word_eng(String.valueOf(number/100));
+            x+=" "+HUNDRED;
+
+            if(number%10 == 0){
+                x += " " + OTHER_TENS[Integer.valueOf((number%100)/10-2)];
+                return x;
+            }
+
+            else if (Integer.valueOf(number/10)%10 == 0){
+                x+=" " + change_on_word_eng(String.valueOf(number%10));
+                return x;
+            }
+
+            else if(Integer.valueOf(number/10)%10 == 1){
+                x+=" " + change_on_word_eng(String.valueOf(number%100));
+                return x;
+            }
+
+            else{
+                x += " " + OTHER_TENS[(number/10)%10-2];
+                x += " " + change_on_word_eng(String.valueOf(number%10));
+                return x;
+            }
+        }
+    }
+
+    /**
+     * Metoda klasy translator służąca do zamiany danej liczby na słowo
+     *
+     * @param w - (String) dana liczba
+     * @return (String) słowny opis liczby w języku polskim
+     */
 
     private static String change_on_word_pol(String w) {
 
