@@ -34,7 +34,6 @@ public class ProjectioApplicationTests {
         assert (MultiTranslationRestController.getMultiTranslation(
                 "Kossa 123 prof.", "[\"upper\", \"expandNumbers\"]")
                 .compareTo("KOSSA sto dwadzieścia trzy PROF.") == 0);
-
     }
 
 
@@ -43,10 +42,24 @@ public class ProjectioApplicationTests {
     }
     @Test
     public void numbersTest() {
-        assert(Translator.expandNumbers("Szymon to gosc na 102").compareTo("Szymon to gosc na sto dwa") == 0);
-    }
+        assert(Translator.expandNumbers("17.961","eng").compareTo("seventeen point nine six") == 0);
+        assert(Translator.expandNumbers("Szymon to gosc na 102","eng").compareTo("Szymon to gosc na one hundred two") == 0);
+        assert(Translator.expandNumbers("pi to około 3.14","eng").compareTo("pi to około three point one four") == 0);
+        assert(Translator.expandNumbers("najlepsze 0.7","eng").compareTo("najlepsze zero point seven") == 0);
+        assert(Translator.expandNumbers("997 ten numer to kłopoty","eng").compareTo("nine hundred ninety seven" +
+                " ten numer to kłopoty") == 0);
+        assert(Translator.expandNumbers("Dodam sobie kropke 102. i tyle","eng").compareTo("Dodam sobie kropke " +
+                "one hundred two i tyle") == 0);
 
-
+        assert(Translator.expandNumbers("17.961","pl").compareTo("siedemnaście i dziewięćdziesiąt sześć setnych") == 0);
+        assert(Translator.expandNumbers("Szymon to gosc na 102","pl").compareTo("Szymon to gosc na sto dwa") == 0);
+        assert(Translator.expandNumbers("pi to około 3.14","pl").compareTo("pi to około trzy i czternaście setnych") == 0);
+        assert(Translator.expandNumbers("najlepsze 0.7","pl").compareTo("najlepsze zero i siedemdziesiąt setnych") == 0);
+        assert(Translator.expandNumbers("997 ten numer to kłopoty","pl").compareTo("dziewięćset dziewięćdziesiąt siedem" +
+                " ten numer to kłopoty") == 0);
+        assert(Translator.expandNumbers("Dodam sobie kropke 102. i tyle","pl").compareTo("Dodam sobie kropke " +
+                "sto dwa i tyle") == 0);
+}
     @Test
     public void capitalizeTest(){
         assert (Translator.toCapitalize("Test TEST test").compareTo("Test Test Test")==0);

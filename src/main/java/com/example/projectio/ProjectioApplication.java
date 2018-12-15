@@ -11,6 +11,7 @@ public class ProjectioApplication {
     private static JdbcTemplate jdbcTemplate = null;
 
     public static void main(String[] args) {
+        Autocorrect.init("slowa.txt");
         SpringApplication.run(ProjectioApplication.class, args);
     }
 
@@ -18,7 +19,7 @@ public class ProjectioApplication {
         if (jdbcTemplate == null) {
             DriverManagerDataSource dataSource = new DriverManagerDataSource();
             dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-            dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+            dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/test");
             dataSource.setUsername(System.getenv("dbUserName"));
             dataSource.setPassword(System.getenv("dbPassword"));
             jdbcTemplate = new JdbcTemplate(dataSource);
