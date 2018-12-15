@@ -1,11 +1,12 @@
-package com.example.projectio;
+package com.example.projectio.RestControllers;
 
+import com.example.projectio.DecoratorInterface;
+import com.example.projectio.Decorators.InverseDecorator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -16,7 +17,7 @@ import org.slf4j.LoggerFactory;
  */
 
 @RestController
-public class InverseRestController {
+public class InverseRestController implements DecoratorInterface {
     /**
      * Metoda klasy InverseRestController pozwalająca na obsługę żądania obrócenia
      * tekstu z zachowaniem wielkości liter na odpowiednich pozycjach
@@ -27,19 +28,30 @@ public class InverseRestController {
      * @param text - (String) tekst podany przez użytkownika
      * @return (String) tekst po obróceniu oraz uporządkowaniu wielkości
      *                  liter
-     * @see Translator#toInverse(String)
+     * @see InverseDecorator#decore()
      */
   
     private static final Logger logger = LoggerFactory.getLogger(InverseRestController.class);
+
+    /**
+     * Pole klasy przechowujące tekst do odwócenia.
+     */
+    private String text;
   
     @GetMapping("/api/inverse")
-    public static String inverseText(@RequestParam(name = "text") String text) {
+    public String inverseText(@RequestParam(name = "text") String text) {
       
        logger.info("Rozpoczynam translację metodą inverse");
-        
-       return Translator.toInverse(text);
+        this.text = text;
+        String toReturn = decore();
+        return toReturn;
     }
-  
+
+    @Override
+    public String decore() {
+        InverseDecorator decorator = new InverseDecorator(text);
+        return decorator.decore();
+    }
 }
 
 

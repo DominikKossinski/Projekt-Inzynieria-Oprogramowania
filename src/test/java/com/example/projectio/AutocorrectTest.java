@@ -1,5 +1,6 @@
 package com.example.projectio;
 
+import com.example.projectio.Decorators.AutoCorrectDecorator;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -9,43 +10,51 @@ import static org.junit.Assert.assertEquals;
 
 public class AutocorrectTest {
 
-    public Autocorrect auto;
+    public AutoCorrectDecorator autoDecorator;
 
     @BeforeClass
     public static void loadDict() {
-        Autocorrect.init("slowa.txt");
+        AutoCorrectDecorator.init("slowa.txt");
     }
+
     @Before
-    public void setUp(){
-        auto = new Autocorrect();
+    public void setUp() {
+        autoDecorator = new AutoCorrectDecorator("");
     }
 
     @Test
     public void emptyStringTest() {
-        assertEquals("", auto.correctSentence(""));
+        autoDecorator.setText("");
+        assertEquals("", autoDecorator.decore());
     }
+
     @Test
     public void correctWordTest() {
-        assertEquals("gżegżółka ", auto.correctSentence("gżegżółka"));
+        autoDecorator.setText("gżegżółka");
+        assertEquals("gżegżółka ", autoDecorator.decore());
     }
 
     @Test
     public void incorrectWordTest() {
-        assertEquals("gżegżółka ", auto.correctSentence("grzegrzulka"));
+        autoDecorator.setText("grzegrzulka");
+        assertEquals("gżegżółka ", autoDecorator.decore());
     }
 
     @Test
     public void incorrectSenetenceTest() {
-        assertEquals("gżegżółka jest ruda ", auto.correctSentence("grzegrzulka jest ruda"));
+        autoDecorator.setText("grzegrzulka jest ruda");
+        assertEquals("gżegżółka jest ruda ", autoDecorator.decore());
     }
 
     @Test
     public void correctSenetenceTest() {
-        assertEquals("kaczka nosi okulary ", auto.correctSentence("kaczka nosi okulary"));
+        autoDecorator.setText("kaczka nosi okulary");
+        assertEquals("kaczka nosi okulary ", autoDecorator.decore());
     }
 
     @Test
     public void nonExistingWordTest() {
-        assertEquals("gkdsfkgjsdfhglk ", auto.correctSentence("gkdsfkgjsdfhglk"));
+        autoDecorator.setText("gkdsfkgjsdfhglk");
+        assertEquals("gkdsfkgjsdfhglk ", autoDecorator.decore());
     }
 }

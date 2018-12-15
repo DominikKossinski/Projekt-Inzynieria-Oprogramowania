@@ -1,5 +1,7 @@
-package com.example.projectio;
+package com.example.projectio.RestControllers;
 
+import com.example.projectio.DecoratorInterface;
+import com.example.projectio.Decorators.AutoCorrectDecorator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class AutoCorrectRestController {
+public class AutoCorrectRestController implements DecoratorInterface {
 
     private static final Logger logger = LoggerFactory.getLogger(AutoCorrectRestController.class);
+
+    /**
+     * Pole klasy przechowujące tekst do poprawienia błędów ortograficznych.
+     */
+    private String text;
 
     /**
      * Metoda klasy AutoCorrectRestController pozwalająca na obsługę żądania
@@ -24,17 +31,23 @@ public class AutoCorrectRestController {
      * Przykładowy url:
      * http://localhost:8080/api/autocorrect?text=przykladowy tekst
      *
-     * @param text     - (String) tekst do poprawy podany przez użytkownika
+     * @param text - (String) tekst do poprawy podany przez użytkownika
      * @return (String) tekst po poprawienie
-     *
      */
 
     @GetMapping("/api/autocorrect")
     public String getTextToCapitalize(@RequestParam(name = "text") String text) {
-        Autocorrect autocorrect = new Autocorrect();
         logger.debug("Tekst przed zmianą: " + text);
-        logger.debug("Tekst po zmianie: " + autocorrect.correctSentence(text));
+        this.text = text;
+        String toReturn = decore();
+        logger.debug("Tekst po zmianie: " + toReturn);
 
-        return autocorrect.correctSentence(text);
+        return toReturn;
+    }
+
+    @Override
+    public String decore() {
+        AutoCorrectDecorator decorator = new AutoCorrectDecorator(text);
+        return decorator.decore();
     }
 }
