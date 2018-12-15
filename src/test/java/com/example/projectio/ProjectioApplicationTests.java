@@ -14,16 +14,6 @@ public class ProjectioApplicationTests {
 
 
     @Test
-    public void myShortCutsExpandTest() {
-        MyShortcutsRestController restController = new MyShortcutsRestController();
-        restController.deleteMyShortcut("DK");
-        assert (restController.createMyShortCut(false, "DK;Dominik").compareTo("True") == 0);
-        assert (new Translator().expandMyShortcuts("DK mDKabc").compareTo("Dominik mDominikabc") == 0);
-        assert (restController.deleteMyShortcut("DK").compareTo("True") == 0);
-        assert (restController.deleteMyShortcut("DK").compareTo("NO SHORTCUT DK FOUND") == 0);
-    }
-
-    @Test
     public void myShortcutsRestControllerTest() {
         MyShortcutsRestController restController = new MyShortcutsRestController();
         restController.deleteMyShortcut("DK");
