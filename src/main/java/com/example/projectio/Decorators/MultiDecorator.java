@@ -20,7 +20,7 @@ public class MultiDecorator extends Decorator {
                 UpperCaseDecorator decorator = new UpperCaseDecorator(text);
                 text = decorator.decore();
             } else if (actTranslation.compareTo("upper") == 0) {
-                LowerCaseDecorator decorator = new LowerCaseDecorator(text);
+                UpperCaseDecorator decorator = new UpperCaseDecorator(text);
                 text = decorator.decore();
             } else if (actTranslation.compareTo("capitalize") == 0) {
                 CapitalizeDecorator decorator = new CapitalizeDecorator(text);

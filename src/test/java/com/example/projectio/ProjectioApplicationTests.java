@@ -8,7 +8,6 @@ import com.example.projectio.RestControllers.MultiTranslationRestController;
 import com.example.projectio.RestControllers.MyShortcutsRestController;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -47,13 +46,13 @@ public class ProjectioApplicationTests {
         assert (restController.deleteMyShortcut("DK").compareTo("NO SHORTCUT DK FOUND") == 0);
     }
 
-    @DisplayName(value = "First MultiTranslationTest")
+    @Test
     public void acceptGetMultiTranslation() {
         assert (new MultiTranslationRestController().getMultiTranslation(
                 "Kossa 123 prof.", "[\"upper\", \"capitalize\"]")
                 .compareTo("Kossa 123 Prof.") == 0);
         assert (new MultiTranslationRestController().getMultiTranslation(
-                "Kossa 123 prof.", "[\"upper\", \"expandNumbers\"]")
+                "Kossa 123 prof.", "[\"upper\", \"expandNumbersPl\"]")
                 .compareTo("KOSSA sto dwadzieścia trzy PROF.") == 0);
     }
 
