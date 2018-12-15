@@ -11,13 +11,37 @@ import java.util.Vector;
      */
 
 public class Autocorrect {
+        /**
+        * tablica zawierająca litery oraz odpowiadające im możliwości
+        */
     private static String letters[][];
+        /**
+         * zmienna zawierająca pierwsze litery słów znajdujących się w słowniku w odpowiedniej kolejności
+         */
     private static String alphabet;
+        /**
+         * tablica zawierająca wszystkie słowa ze słownika
+         */
     private static Vector<Vector<String>> dictionary;
+        /**
+         * zmienna służąca do iteracji po obiektach
+         */
     private int index;
+        /**
+         * tablica zawierająca możliwe poprawne słowa
+         */
     private Vector<String> possible;
+        /**
+         * tablica zawierająca słowo zamienione na pojedyncze litery
+         */
     private Vector<String> splitted;
+        /**
+         * zmienna zawierajaca poprawiony tekst
+         */
     private String correctedSentence;
+        /**
+         * tablica zawierająca rozdzielone wyrazy z podanego zdania
+         */
     private String [] wordsArray;
 
     /**
