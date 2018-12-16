@@ -6,6 +6,12 @@ import java.io.File;
 import java.util.Scanner;
 import java.util.Vector;
 
+/**
+ * Klasa pozwalająca na automatyczne poprawianie błędów w zdaniach.
+ *
+ * @author Mariusz
+ */
+
 public class AutoCorrectDecorator extends Decorator {
 
     /**
@@ -48,7 +54,7 @@ public class AutoCorrectDecorator extends Decorator {
     }
 
     /**
-     * Metoda klasy Autocorrect pozwalająca na załadowanie pliku słownika
+     * Metoda klasy AutoCorrectDecorator pozwalająca na załadowanie pliku słownika
      *
      * @param path - (String) nazwa pliku ze słownikiem
      */
@@ -79,7 +85,7 @@ public class AutoCorrectDecorator extends Decorator {
     }
 
     /**
-     * Metoda klasy Autocorrect pozwalająca na wypisanie słownika w konsoli
+     * Metoda klasy AutoCorrectDecorator pozwalająca na wypisanie słownika w konsoli
      */
 
     public static void printDict() {
@@ -112,7 +118,7 @@ public class AutoCorrectDecorator extends Decorator {
     }
 
     /**
-     * Metoda klasy Autocorrect pozwalająca na znalezienie słowa w słowniku
+     * Metoda klasy AutoCorrectDecorator pozwalająca na znalezienie słowa w słowniku
      *
      * @param word - (String) słowo do znalezienia
      * @return (boolean) true jeżeli słowo znajduje się w słowniku false w przeciwnym wypadku
@@ -130,7 +136,7 @@ public class AutoCorrectDecorator extends Decorator {
     }
 
     /**
-     * Metoda klasy Autocorrect pozwalająca na złączeniu pojedynczych liter w głoski w rozdzielonym na litery słowie
+     * Metoda klasy AutoCorrectDecorator pozwalająca na złączeniu pojedynczych liter w głoski w rozdzielonym na litery słowie
      *
      * @param word    - (Vector(String)) rozdzielone na litery słowo
      * @param letterA - (char) pierwsza litera do znalezienia
@@ -153,7 +159,7 @@ public class AutoCorrectDecorator extends Decorator {
     }
 
     /**
-     * Metoda klasy Autocorrect pozwalająca na rozdzielenia słowa na głoski
+     * Metoda klasy AutoCorrectDecorator pozwalająca na rozdzielenia słowa na głoski
      *
      * @param word - (String) słowo do rozdzielenia
      */
@@ -168,7 +174,7 @@ public class AutoCorrectDecorator extends Decorator {
     }
 
     /**
-     * Metoda klasy Autocorrect pozwalająca na znalezienie możliwych słów
+     * Metoda klasy AutoCorrectDecorator pozwalająca na znalezienie możliwych słów
      *
      * @param letterA - (String) pierwsza głoska
      * @param letterB - (String) druga głoska
@@ -192,7 +198,7 @@ public class AutoCorrectDecorator extends Decorator {
     }
 
     /**
-     * Metoda klasy Autocorrect pozwalająca na znalezienie wszystkich możliwych słów
+     * Metoda klasy AutoCorrectDecorator pozwalająca na znalezienie wszystkich możliwych słów
      *
      * @param word - (String) słowo początkowe
      */
@@ -217,7 +223,7 @@ public class AutoCorrectDecorator extends Decorator {
     }
 
     /**
-     * Metoda klasy Autocorrect pozwalająca na poprawienie pojedynczego słowa
+     * Metoda klasy AutoCorrectDecorator pozwalająca na poprawienie pojedynczego słowa
      *
      * @return (String) - pierwsze możliwe słowo znalezione w słowniku
      */

@@ -2,6 +2,12 @@ package com.example.projectio.Decorators;
 
 import static java.lang.Character.isUpperCase;
 
+/**
+ * Klasa pozwalająca na odwracanie kolejności znaków
+ *
+ * @author Mariusz
+ */
+
 public class InverseDecorator extends Decorator {
 
     public InverseDecorator(String text) {
