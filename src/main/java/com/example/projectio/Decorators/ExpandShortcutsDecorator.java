@@ -2,8 +2,6 @@ package com.example.projectio.Decorators;
 
 public class ExpandShortcutsDecorator extends Decorator {
 
-    private String text;
-
     public ExpandShortcutsDecorator(String text) {
         this.text = text;
     }

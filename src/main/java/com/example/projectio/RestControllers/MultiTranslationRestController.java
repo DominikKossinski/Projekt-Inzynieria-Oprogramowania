@@ -1,6 +1,6 @@
 package com.example.projectio.RestControllers;
 
-import com.example.projectio.DecoratorInterface;
+import com.example.projectio.Decorators.Decorator;
 import com.example.projectio.Decorators.MultiDecorator;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -16,17 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @see com.example.projectio.Translator
  */
 @RestController
-public class MultiTranslationRestController implements DecoratorInterface {
+public class MultiTranslationRestController {
 
-    /**
-     * Pole klasy przechowujące tekst, który ma zostać poddany translacji.
-     */
-    private String text;
-
-    /**
-     * Pole klasy przechowujące listę translacjii do wykonania;
-     */
-    private JSONArray translationsArray;
 
     /**
      * Metoda klasy MultiTranslationRestController pozwalająca na obsługę żądania
@@ -41,9 +32,8 @@ public class MultiTranslationRestController implements DecoratorInterface {
         JSONParser parser = new JSONParser();
         try {
             JSONArray translationsArray = (JSONArray) parser.parse(jsonText);
-            this.text = text;
-            this.translationsArray = translationsArray;
-            String toReturn = decore();
+            Decorator decorator = new MultiDecorator(text, translationsArray);
+            String toReturn = decorator.decore();
             return toReturn;
         } catch (ParseException e) {
             e.printStackTrace();
@@ -51,9 +41,4 @@ public class MultiTranslationRestController implements DecoratorInterface {
         }
     }
 
-    @Override
-    public String decore() {
-        MultiDecorator decorator = new MultiDecorator(text, translationsArray);
-        return decorator.decore();
-    }
 }

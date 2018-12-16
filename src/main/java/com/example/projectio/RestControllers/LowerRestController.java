@@ -1,6 +1,5 @@
 package com.example.projectio.RestControllers;
 
-import com.example.projectio.DecoratorInterface;
 import com.example.projectio.Decorators.Decorator;
 import com.example.projectio.Decorators.LowerCaseDecorator;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class LowerRestController implements DecoratorInterface {
+public class LowerRestController {
 
-    /**
-     * Pole klasy przechowujące tekst, na którym ma zostać wykonana operacja 'toLowerCase'.
-     */
-    private String text;
 
     /**
      * Metoda klasy LowerRestController pozwalająca na obsługę żądania
@@ -34,14 +29,9 @@ public class LowerRestController implements DecoratorInterface {
 
     @GetMapping("/api/lower")
     public String getTextToLowerCase(@RequestParam(name = "text") String text) {
-        this.text = text;
-        String toReturn = decore();
+        Decorator decorator = new LowerCaseDecorator(text);
+        String toReturn = decorator.decore();
         return toReturn;
     }
 
-    @Override
-    public String decore() {
-        LowerCaseDecorator decorator = new LowerCaseDecorator(text);
-        return decorator.decore();
-    }
 }

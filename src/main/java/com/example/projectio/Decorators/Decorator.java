@@ -1,7 +1,7 @@
 package com.example.projectio.Decorators;
 
-public abstract class Decorator {
+public abstract class Decorator implements TextInterface {
 
-    public abstract String decore();
+    protected String text;
 
 }

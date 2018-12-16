@@ -1,6 +1,6 @@
 package com.example.projectio.RestControllers;
 
-import com.example.projectio.DecoratorInterface;
+import com.example.projectio.Decorators.Decorator;
 import com.example.projectio.Decorators.ExpandNumbersDecorator;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,16 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class NumberRestController implements DecoratorInterface {
+public class NumberRestController {
 
-    /**
-     * Pole klasy przechowujące tekst, w którym należy rozwinąć liczby.
-     */
-    private String text;
-    /**
-     * Pole klasy przechowujące język w jakim mają zostać rozwinięte liczby.
-     */
-    private String language;
+
 
     /**
      * Metoda klasy NumberRestController pozwalająca na obsługę żądania
@@ -41,15 +34,9 @@ public class NumberRestController implements DecoratorInterface {
     @GetMapping("/api/numbers")
     public String getTextToNumbers(@RequestParam(name = "text") String text,
                                    @RequestParam(name = "lg", defaultValue = "pl", required = false) String language) {
-        this.text = text;
-        this.language = language;
-        String toReturn = decore();
+        Decorator decorator = new ExpandNumbersDecorator(text, language);
+        String toReturn = decorator.decore();
         return toReturn;
     }
 
-    @Override
-    public String decore() {
-        ExpandNumbersDecorator decorator = new ExpandNumbersDecorator(text, language);
-        return decorator.decore();
-    }
 }

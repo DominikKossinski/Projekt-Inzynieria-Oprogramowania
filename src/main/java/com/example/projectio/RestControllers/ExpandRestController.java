@@ -1,6 +1,6 @@
 package com.example.projectio.RestControllers;
 
-import com.example.projectio.DecoratorInterface;
+import com.example.projectio.Decorators.Decorator;
 import com.example.projectio.Decorators.ExpandShortcutsDecorator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,12 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class ExpandRestController implements DecoratorInterface {
+public class ExpandRestController {
 
-    /**
-     * Pole klasy przechowujące tekst, w którym mają zostać rozwinięte skróty.
-     */
-    private String text;
+
 
     /**
      * Metoda klasy ExpandRestController pozwalająca na obsługę żądania
@@ -34,14 +31,9 @@ public class ExpandRestController implements DecoratorInterface {
 
     @RequestMapping("/api/expandShortcuts")
     public String getExpandedShortcuts(@RequestParam(name = "text") String text) {
-        this.text = text;
-        String toReturn = decore();
+        Decorator decorator = new ExpandShortcutsDecorator(text);
+        String toReturn = decorator.decore();
         return toReturn;
     }
 
-    @Override
-    public String decore() {
-        ExpandShortcutsDecorator decorator = new ExpandShortcutsDecorator(text);
-        return decorator.decore();
-    }
 }

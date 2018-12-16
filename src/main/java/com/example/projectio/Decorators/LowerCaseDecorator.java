@@ -2,8 +2,6 @@ package com.example.projectio.Decorators;
 
 public class LowerCaseDecorator extends Decorator {
 
-    private String text;
-
     public LowerCaseDecorator(String text) {
         this.text = text;
     }

@@ -4,7 +4,6 @@ import org.json.simple.JSONArray;
 
 public class MultiDecorator extends Decorator {
 
-    private String text;
     private JSONArray translationsArray;
 
     public MultiDecorator(String text, JSONArray translationsArray) {

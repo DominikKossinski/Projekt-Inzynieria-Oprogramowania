@@ -1,6 +1,6 @@
 package com.example.projectio.RestControllers;
 
-import com.example.projectio.DecoratorInterface;
+import com.example.projectio.Decorators.Decorator;
 import com.example.projectio.Decorators.InverseDecorator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class InverseRestController implements DecoratorInterface {
+public class InverseRestController {
     /**
      * Metoda klasy InverseRestController pozwalająca na obsługę żądania obrócenia
      * tekstu z zachowaniem wielkości liter na odpowiednich pozycjach
@@ -43,15 +43,12 @@ public class InverseRestController implements DecoratorInterface {
       
        logger.info("Rozpoczynam translację metodą inverse");
         this.text = text;
-        String toReturn = decore();
+        Decorator decorator = new InverseDecorator(text);
+        String toReturn = decorator.decore();
         return toReturn;
     }
 
-    @Override
-    public String decore() {
-        InverseDecorator decorator = new InverseDecorator(text);
-        return decorator.decore();
-    }
+
 }
 
 

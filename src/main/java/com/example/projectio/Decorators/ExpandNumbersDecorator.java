@@ -22,8 +22,9 @@ public class ExpandNumbersDecorator extends Decorator {
             "eighty", "ninety"};
     private static final String HUNDRED = "hundred";
 
-    private String text;
-
+    /**
+     * Pole klasy przechowujące oznaczenie języka, w którym mają być rozwijane liczby.
+     */
     private String language;
 
     public ExpandNumbersDecorator(String text, String language) {
