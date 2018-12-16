@@ -1,9 +1,6 @@
 package com.example.projectio;
 
-import com.example.projectio.Decorators.CapitalizeDecorator;
-import com.example.projectio.Decorators.DeleteRepeatWordsDecorator;
-import com.example.projectio.Decorators.ExpandNumbersDecorator;
-import com.example.projectio.Decorators.InverseDecorator;
+import com.example.projectio.Decorators.*;
 import com.example.projectio.RestControllers.MultiTranslationRestController;
 import com.example.projectio.RestControllers.MyShortcutsRestController;
 import org.junit.Before;
@@ -22,6 +19,7 @@ public class ProjectioApplicationTests {
     private CapitalizeDecorator capitalizeDecorator;
     private InverseDecorator inverseDecorator;
     private DeleteRepeatWordsDecorator deleteDecorator;
+    private UpperCaseDecorator upperCaseDecorator;
 
 
     @Before
@@ -30,6 +28,12 @@ public class ProjectioApplicationTests {
         capitalizeDecorator = new CapitalizeDecorator("Test TEST test");
         inverseDecorator = new InverseDecorator("MarIusz Nie UmiE pIsAc");
         deleteDecorator = new DeleteRepeatWordsDecorator("Ide do do sklepu");
+        upperCaseDecorator = new UpperCaseDecorator("Cos tam");
+    }
+
+    @Test
+    public void upperTest() {
+        assert (upperCaseDecorator.decore().compareTo("COS TAM") == 0);
     }
 
 
@@ -56,13 +60,32 @@ public class ProjectioApplicationTests {
                 .compareTo("KOSSA sto dwadzieścia trzy PROF.") == 0);
     }
 
-
     @Test
-    public void contextLoads() {
+    public void delAndNumTest() {
+        deleteDecorator.setText("123 123");
+        assert (deleteDecorator.decore().compareTo("123") == 0);
+        numbersDecorator.setParameters(deleteDecorator.decore(), "pl");
+        assert (numbersDecorator.decore().compareTo("sto dwadzieścia trzy") == 0);
     }
 
     @Test
-    public void numbersTest() {
+    public void capAndInvTest() {
+        capitalizeDecorator.setText("abc cba");
+        assert (capitalizeDecorator.decore().compareTo("Abc Cba") == 0);
+        inverseDecorator.setText(capitalizeDecorator.decore());
+        assert (inverseDecorator.decore().compareTo("Abc Cba") == 0);
+    }
+
+    @Test
+    public void upperAndDelTest() {
+        upperCaseDecorator.setText("abc ABC");
+        assert (upperCaseDecorator.decore().compareTo("ABC ABC") == 0);
+        deleteDecorator.setText(upperCaseDecorator.decore());
+        assert (deleteDecorator.decore().compareTo("ABC") == 0);
+    }
+
+    @Test
+    public void numbersTestEng() {
         assert (numbersDecorator.decore().compareTo("seventeen point nine six") == 0);
         numbersDecorator.setParameters("Szymon to gosc na 102", "eng");
         assert (numbersDecorator.decore().
@@ -78,6 +101,10 @@ public class ProjectioApplicationTests {
         assert (numbersDecorator.decore().compareTo("Dodam sobie kropke " +
                 "one hundred two i tyle") == 0);
 
+    }
+
+    @Test
+    public void numberTestPl() {
         numbersDecorator.setParameters("17.961", "pl");
         assert (numbersDecorator.decore().compareTo("siedemnaście i dziewięćdziesiąt sześć setnych") == 0);
         numbersDecorator.setParameters("Szymon to gosc na 102", "pl");
