@@ -1,5 +1,11 @@
 package com.example.projectio.Decorators;
 
+/**
+ * Klasa pozwalająca na zamianę liter na małe
+ *
+ * @author Krzysztof
+ */
+
 public class LowerCaseDecorator extends Decorator {
 
     public LowerCaseDecorator(String text) {
@@ -8,7 +14,7 @@ public class LowerCaseDecorator extends Decorator {
 
 
     /**
-     * Metoda klasy Translator pozwalająca na zmianę wielkość liter na małe.
+     * Metoda klasy LowerCaseDecorator pozwalająca na zmianę wielkość liter na małe.
      *
      * @return (String) tekst po zastosowaniu translacji w którym każda litera jest mała
      */

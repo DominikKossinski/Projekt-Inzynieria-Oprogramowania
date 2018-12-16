@@ -1,5 +1,11 @@
 package com.example.projectio.Decorators;
 
+/**
+ * Klasa pozwalająca na zamianę pierwszej litery w zdaniu na wielką.
+ *
+ * @author Krzysztof
+ */
+
 public class CapitalizeDecorator extends Decorator {
 
     public CapitalizeDecorator(String text) {

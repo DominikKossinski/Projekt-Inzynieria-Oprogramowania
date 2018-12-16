@@ -2,7 +2,20 @@ package com.example.projectio.Decorators;
 
 import org.json.simple.JSONArray;
 
+/**
+ * Klasa pozwalająca na obsługę listy zmian, które mają zaaplikowane na podanym tekscie
+ *
+ * @author Dominik
+ */
+
+
 public class MultiDecorator extends Decorator {
+
+
+    /**
+     * Pole klasy przechowujące listę operacji
+     */
+
 
     private JSONArray translationsArray;
 
@@ -10,6 +23,12 @@ public class MultiDecorator extends Decorator {
         this.text = text;
         this.translationsArray = translationsArray;
     }
+
+    /**
+     * Metoda klasy MultiDecorator pozwalająca zastosowaniu listy translacji
+     *
+     * @return (String) tekst po zastosowaniu listy translacji
+     */
 
     @Override
     public String decore() {
