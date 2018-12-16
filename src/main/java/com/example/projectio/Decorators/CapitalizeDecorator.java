@@ -2,8 +2,6 @@ package com.example.projectio.Decorators;
 
 public class CapitalizeDecorator extends Decorator {
 
-    private String text;
-
     public CapitalizeDecorator(String text) {
         this.text = text;
     }

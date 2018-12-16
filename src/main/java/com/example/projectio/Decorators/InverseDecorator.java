@@ -4,8 +4,6 @@ import static java.lang.Character.isUpperCase;
 
 public class InverseDecorator extends Decorator {
 
-    private String text;
-
     public InverseDecorator(String text) {
         this.text = text;
     }

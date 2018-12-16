@@ -2,7 +2,6 @@ package com.example.projectio.Decorators;
 
 public class UpperCaseDecorator extends Decorator {
 
-    private String text;
 
     public UpperCaseDecorator(String text) {
         this.text = text;

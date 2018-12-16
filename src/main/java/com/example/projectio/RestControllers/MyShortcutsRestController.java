@@ -1,6 +1,6 @@
 package com.example.projectio.RestControllers;
 
-import com.example.projectio.DecoratorInterface;
+import com.example.projectio.Decorators.Decorator;
 import com.example.projectio.Decorators.ExpandMyShortCutsDecorator;
 import com.example.projectio.ProjectioApplication;
 import org.slf4j.Logger;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Dominik
  */
 @RestController
-public class MyShortcutsRestController implements DecoratorInterface {
+public class MyShortcutsRestController {
 
     /**
      * Logger używany do informowania o wykonujących się czynnościach.
@@ -27,11 +27,6 @@ public class MyShortcutsRestController implements DecoratorInterface {
      * Zmienna używana do wysyłania żądań do bazy danych.
      */
     private JdbcTemplate jdbcTemplate = ProjectioApplication.getJdbcTemplate();
-
-    /**
-     * Pole klasy przechowujące tekst, w którym należy rozwinąć skróty;
-     */
-    private String text;
 
     /**
      * Metoda klasy MyShortcutsRestController pozwalająca na obsługę żądania
@@ -46,8 +41,8 @@ public class MyShortcutsRestController implements DecoratorInterface {
      */
     @RequestMapping(value = "/api/expandMyShortcuts", method = RequestMethod.GET)
     public String expandMyShortcuts(@RequestParam(name = "text") String text) {
-        this.text = text;
-        String toReturn = decore();
+        Decorator decorator = new ExpandMyShortCutsDecorator(text);
+        String toReturn = decorator.decore();
         return toReturn;
     }
 
@@ -127,9 +122,4 @@ public class MyShortcutsRestController implements DecoratorInterface {
         }
     }
 
-    @Override
-    public String decore() {
-        ExpandMyShortCutsDecorator decorator = new ExpandMyShortCutsDecorator(text);
-        return decorator.decore();
-    }
 }

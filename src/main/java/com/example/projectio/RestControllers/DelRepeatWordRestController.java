@@ -1,6 +1,6 @@
 package com.example.projectio.RestControllers;
 
-import com.example.projectio.DecoratorInterface;
+import com.example.projectio.Decorators.Decorator;
 import com.example.projectio.Decorators.DeleteRepeatWordsDecorator;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,12 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class DelRepeatWordRestController implements DecoratorInterface {
-
-    /**
-     * Pole klasy przechowujące tekst, w którym mają zostać usunięte powtórzenia.
-     */
-    private String text;
+public class DelRepeatWordRestController {
 
     /**
      * Metoda klasy DelRepeatWordRestController pozwalająca na obsługę żądania
@@ -32,14 +27,9 @@ public class DelRepeatWordRestController implements DecoratorInterface {
      */
     @GetMapping("/api/repeatDel")
     public String getTextWithDelRepeats(@RequestParam(name = "text") String text) {
-        this.text = text;
-        String toReturn = decore();
+        Decorator decorator = new DeleteRepeatWordsDecorator(text);
+        String toReturn = decorator.decore();
         return toReturn;
     }
 
-    @Override
-    public String decore() {
-        DeleteRepeatWordsDecorator decorator = new DeleteRepeatWordsDecorator(text);
-        return decorator.decore();
-    }
 }

@@ -1,7 +1,7 @@
 package com.example.projectio.RestControllers;
 
-import com.example.projectio.DecoratorInterface;
 import com.example.projectio.Decorators.AutoCorrectDecorator;
+import com.example.projectio.Decorators.Decorator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class AutoCorrectRestController implements DecoratorInterface {
+public class AutoCorrectRestController {
 
     private static final Logger logger = LoggerFactory.getLogger(AutoCorrectRestController.class);
 
-    /**
-     * Pole klasy przechowujące tekst do poprawienia błędów ortograficznych.
-     */
-    private String text;
 
     /**
      * Metoda klasy AutoCorrectRestController pozwalająca na obsługę żądania
@@ -38,16 +34,11 @@ public class AutoCorrectRestController implements DecoratorInterface {
     @GetMapping("/api/autocorrect")
     public String getTextToCapitalize(@RequestParam(name = "text") String text) {
         logger.debug("Tekst przed zmianą: " + text);
-        this.text = text;
-        String toReturn = decore();
+        Decorator decorator = new AutoCorrectDecorator(text);
+        String toReturn = decorator.decore();
         logger.debug("Tekst po zmianie: " + toReturn);
 
         return toReturn;
     }
 
-    @Override
-    public String decore() {
-        AutoCorrectDecorator decorator = new AutoCorrectDecorator(text);
-        return decorator.decore();
-    }
 }

@@ -2,8 +2,6 @@ package com.example.projectio.Decorators;
 
 public class DeleteRepeatWordsDecorator extends Decorator {
 
-    private String text;
-
     public DeleteRepeatWordsDecorator(String text) {
         this.text = text;
     }

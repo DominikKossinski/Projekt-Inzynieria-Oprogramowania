@@ -20,7 +20,6 @@ public class AutoCorrectDecorator extends Decorator {
      * tablica zawierająca wszystkie słowa ze słownika
      */
     private static Vector<Vector<String>> dictionary;
-    private String text;
     /**
      * zmienna służąca do iteracji po obiektach
      */

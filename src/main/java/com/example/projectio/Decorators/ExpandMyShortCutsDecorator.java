@@ -8,8 +8,6 @@ import java.util.List;
 
 public class ExpandMyShortCutsDecorator extends Decorator {
 
-    private String text;
-
     public ExpandMyShortCutsDecorator(String text) {
         this.text = text;
     }
