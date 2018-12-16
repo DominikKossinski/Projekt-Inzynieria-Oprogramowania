@@ -45,6 +45,13 @@ public class AutoCorrectRestController implements DecoratorInterface {
         return toReturn;
     }
 
+
+    /**
+     * Metoda klasy AutoCorrectRestController pozwalająca na poprawienie całego zdania
+     *
+     * @return (String) - poprawione zdanie
+     */
+
     @Override
     public String decore() {
         AutoCorrectDecorator decorator = new AutoCorrectDecorator(text);

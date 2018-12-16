@@ -39,6 +39,12 @@ public class LowerRestController implements DecoratorInterface {
         return toReturn;
     }
 
+    /**
+     * Metoda klasy LowerRestController pozwalająca na zmianę wielkość liter na małe.
+     *
+     * @return (String) tekst po zastosowaniu translacji w którym każda litera jest mała
+     */
+
     @Override
     public String decore() {
         LowerCaseDecorator decorator = new LowerCaseDecorator(text);

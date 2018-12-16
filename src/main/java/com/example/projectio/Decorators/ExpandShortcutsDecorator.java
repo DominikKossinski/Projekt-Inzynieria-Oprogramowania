@@ -1,6 +1,17 @@
 package com.example.projectio.Decorators;
 
+/**
+ * Klasa pozwalająca na rozwijanie skrótów w zdaniach
+ *
+ * @author Dominik
+ */
+
 public class ExpandShortcutsDecorator extends Decorator {
+
+
+    /**
+     * Pole klasy przechowujące text do zamiany
+     */
 
     private String text;
 
@@ -9,7 +20,7 @@ public class ExpandShortcutsDecorator extends Decorator {
     }
 
     /**
-     * Metoda klasy Translator pozwalająca na rozwijanie podstawowych skrótów
+     * Metoda klasy ExpandShortcutsDecorator pozwalająca na rozwijanie podstawowych skrótów
      *
      * @return (String) tekst po zastosowaniu translacji w którym podane poniżej skróty
      * zostają zastąpione przez ich pełne rozwinięcia

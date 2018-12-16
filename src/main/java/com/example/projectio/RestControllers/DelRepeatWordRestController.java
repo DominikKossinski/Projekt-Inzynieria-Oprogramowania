@@ -37,6 +37,12 @@ public class DelRepeatWordRestController implements DecoratorInterface {
         return toReturn;
     }
 
+    /**
+     * Metoda klasy DelRepeatWordRestController służąca do usuwania powtórzeń w zdaniu
+     *
+     * @return (String) tekst po usunięciu powtórzeń
+     */
+
     @Override
     public String decore() {
         DeleteRepeatWordsDecorator decorator = new DeleteRepeatWordsDecorator(text);

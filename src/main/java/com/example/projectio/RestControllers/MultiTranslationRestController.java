@@ -51,6 +51,12 @@ public class MultiTranslationRestController implements DecoratorInterface {
         }
     }
 
+    /**
+     * Metoda klasy MultiTranslationRestController pozwalająca zastosowaniu listy translacji
+     *
+     * @return (String) tekst po zastosowaniu listy translacji
+     */
+
     @Override
     public String decore() {
         MultiDecorator decorator = new MultiDecorator(text, translationsArray);

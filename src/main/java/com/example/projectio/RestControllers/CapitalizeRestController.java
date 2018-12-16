@@ -47,6 +47,13 @@ public class CapitalizeRestController implements DecoratorInterface {
         return toReturn;
     }
 
+    /**
+     * Metoda klasy CapitalizeRestController pozwalająca na zmianę welkości pierwszej litery
+     * każdego wyrazu w zdaniu na wielką.
+     *
+     * @return (String) tekst po zastosowaniu translacji w którym pierwsza litera każdego wyrazu jest wielka
+     */
+
     @Override
     public String decore() {
         CapitalizeDecorator decorator = new CapitalizeDecorator(text);

@@ -127,6 +127,13 @@ public class MyShortcutsRestController implements DecoratorInterface {
         }
     }
 
+    /**
+     * Metoda klasy MyShortcutsRestController służąca do rozwijania zdefiniowanych przez użytkownika skrótów
+     * w tekście przekazywanym jako parametr.
+     *
+     * @return (String) tekst po rozwinięciu skrótów
+     */
+
     @Override
     public String decore() {
         ExpandMyShortCutsDecorator decorator = new ExpandMyShortCutsDecorator(text);

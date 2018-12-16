@@ -2,7 +2,17 @@ package com.example.projectio.Decorators;
 
 import static java.lang.Character.isUpperCase;
 
+/**
+ * Klasa pozwalająca na odwracanie kolejności znaków
+ *
+ * @author Mariusz
+ */
+
 public class InverseDecorator extends Decorator {
+
+    /**
+     * Pole klasy przechowujące text do zamiany
+     */
 
     private String text;
 
@@ -11,7 +21,7 @@ public class InverseDecorator extends Decorator {
     }
 
     /**
-     * Metoda służąca do obracania tekstu przekazanego jako parametr
+     * Metoda klasy InverseDecorator służąca do obracania tekstu przekazanego jako parametr
      * z zachowaniem wielkości znaków na odpowiednich pozycjach.
      *
      * @return (String) tekst po obróceniu

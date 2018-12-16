@@ -39,6 +39,12 @@ public class ExpandRestController implements DecoratorInterface {
         return toReturn;
     }
 
+    /**
+     * Metoda klasy ExpandRestController pozwalająca na zamianę skrótów na ich rozwinięte odpowiedniki.
+     *
+     * @return (String) tekst po zastosowaniu translacji w którym skróty zostały rozwinięte.
+     */
+
     @Override
     public String decore() {
         ExpandShortcutsDecorator decorator = new ExpandShortcutsDecorator(text);

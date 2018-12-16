@@ -47,6 +47,13 @@ public class NumberRestController implements DecoratorInterface {
         return toReturn;
     }
 
+    /**
+     * Metoda klasy NumberRestController pozwalająca na zamianę liczb pisanych cyframi na ich słowną reprezentacje
+     *
+     * @return (String) tekst po zastosowaniu translacji w którym wszystkie liczby pisane cyframi zostają
+     * zostają zastąpione przez ich słowne reprezentacje np. 100 - sto
+     */
+
     @Override
     public String decore() {
         ExpandNumbersDecorator decorator = new ExpandNumbersDecorator(text, language);

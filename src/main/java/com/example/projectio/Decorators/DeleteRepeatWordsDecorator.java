@@ -1,6 +1,17 @@
 package com.example.projectio.Decorators;
 
+/**
+ * Klasa pozwalająca na usuwanie powtórzeń w zdaniach.
+ *
+ * @author Krzysztof
+ */
+
+
 public class DeleteRepeatWordsDecorator extends Decorator {
+
+    /**
+     * Pole klasy przechowujące text do zamiany
+     */
 
     private String text;
 
@@ -10,7 +21,7 @@ public class DeleteRepeatWordsDecorator extends Decorator {
 
 
     /**
-     * Metoda służąca do usuwania powtórzeń w zdaniu
+     * Metoda klasy DeleteRepeatWordsDecorator służąca do usuwania powtórzeń w zdaniu
      *
      * @return (String) tekst po usunięciu powtórzeń
      */

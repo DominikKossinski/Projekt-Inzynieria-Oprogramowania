@@ -47,6 +47,14 @@ public class InverseRestController implements DecoratorInterface {
         return toReturn;
     }
 
+
+    /**
+     * Metoda klasy InverseRestController służąca do obracania tekstu przekazanego jako parametr
+     * z zachowaniem wielkości znaków na odpowiednich pozycjach.
+     *
+     * @return (String) tekst po obróceniu
+     */
+
     @Override
     public String decore() {
         InverseDecorator decorator = new InverseDecorator(text);

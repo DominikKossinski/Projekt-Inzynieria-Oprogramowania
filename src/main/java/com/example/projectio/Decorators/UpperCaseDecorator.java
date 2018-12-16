@@ -15,6 +15,13 @@ public class UpperCaseDecorator extends Decorator {
      * @see Decorator#decore()
      */
 
+
+    /**
+     * Metoda klasy UpperCaseDecorator pozwalająca na zamianę liter na wielkie
+     *
+     * @return (String) tekst po zastosowaniu zamiany liter na wielkie
+     */
+
     @Override
     public String decore() {
         return this.text.toUpperCase();

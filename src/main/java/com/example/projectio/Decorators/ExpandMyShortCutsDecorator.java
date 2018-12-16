@@ -6,7 +6,17 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
+/**
+ * Klasa pozwalająca na używanie własnych skrótów
+ *
+ * @author Dominik
+ */
+
 public class ExpandMyShortCutsDecorator extends Decorator {
+
+    /**
+     * Pole klasy przechowujące text do zamiany
+     */
 
     private String text;
 
@@ -15,7 +25,7 @@ public class ExpandMyShortCutsDecorator extends Decorator {
     }
 
     /**
-     * Metoda służąca do rozwijania zdefiniowanych przez użytkownika skrótów
+     * Metoda klasy ExpandMyShortCutsDecorator służąca do rozwijania zdefiniowanych przez użytkownika skrótów
      * w tekście przekazywanym jako parametr.
      *
      * @return (String) tekst po rozwinięciu skrótów

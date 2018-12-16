@@ -1,5 +1,12 @@
 package com.example.projectio.Decorators;
 
+/**
+ * Klasa pozwalająca na zamianę liczb na ich odpowiedniki zapisane słownie
+ *
+ * @author Szymon
+ */
+
+
 public class ExpandNumbersDecorator extends Decorator {
 
     private static final String[] FIRST = new String[]{"zero", "jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć"};
@@ -22,7 +29,14 @@ public class ExpandNumbersDecorator extends Decorator {
             "eighty", "ninety"};
     private static final String HUNDRED = "hundred";
 
+    /**
+     * Pole klasy przechowujące text do zamiany
+     */
     private String text;
+
+    /**
+     * Pole klasy przechowujące język
+     */
 
     private String language;
 
@@ -32,7 +46,7 @@ public class ExpandNumbersDecorator extends Decorator {
     }
 
     /**
-     * Metoda klasy translator służąca do zamiany danej liczby na słowo
+     * Metoda klasy ExpandNumbersDecorator służąca do zamiany danej liczby na słowo
      *
      * @param w - (String) dana liczba
      * @return (String) słowny opis liczby w języku angielskim
@@ -85,7 +99,7 @@ public class ExpandNumbersDecorator extends Decorator {
     }
 
     /**
-     * Metoda klasy translator służąca do zamiany danej liczby na słowo
+     * Metoda klasy ExpandNumbersDecorator służąca do zamiany danej liczby na słowo
      *
      * @param w - (String) dana liczba
      * @return (String) słowny opis liczby w języku polskim
@@ -135,7 +149,7 @@ public class ExpandNumbersDecorator extends Decorator {
     }
 
     /**
-     * Metoda klasy translator służąca do zamiany części przecinkowych liczby na słowa
+     * Metoda klasy ExpandNumbersDecorator służąca do zamiany części przecinkowych liczby na słowa
      *
      * @param number - (int) części setne liczby
      * @return (String) odpowiadający podanym częsciom setnym słowny opis
@@ -163,7 +177,7 @@ public class ExpandNumbersDecorator extends Decorator {
     }
 
     /**
-     * Metoda klasy Translator pozwalająca na zamianę liczb pisanych cyframi na ich słowną reprezentacje
+     * Metoda klasy ExpandNumbersDecorator pozwalająca na zamianę liczb pisanych cyframi na ich słowną reprezentacje
      *
      * @return (String) tekst po zastosowaniu translacji w którym wszystkie liczby pisane cyframi zostają
      * zostają zastąpione przez ich słowne reprezentacje np. 100 - sto
@@ -259,6 +273,13 @@ public class ExpandNumbersDecorator extends Decorator {
     public void setText(String text) {
         this.text = text;
     }
+
+    /**
+     * Metoda klasy ExpandNumbersDecorator pozwalająca na ustawienie parametrów
+     *
+     * @param text - (String) text do zamiany
+     * @param language - (String) język
+     */
 
     public void setParameters(String text, String language) {
         this.text = text;
