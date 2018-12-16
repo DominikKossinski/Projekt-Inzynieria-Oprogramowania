@@ -1,5 +1,6 @@
 package com.example.projectio;
 
+import com.example.projectio.Decorators.AutoCorrectDecorator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,7 +12,7 @@ public class ProjectioApplication {
     private static JdbcTemplate jdbcTemplate = null;
 
     public static void main(String[] args) {
-        Autocorrect.init("slowa.txt");
+        AutoCorrectDecorator.init("slowa.txt");
         SpringApplication.run(ProjectioApplication.class, args);
     }
 
@@ -19,7 +20,7 @@ public class ProjectioApplication {
         if (jdbcTemplate == null) {
             DriverManagerDataSource dataSource = new DriverManagerDataSource();
             dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-            dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/test");
+            dataSource.setUrl(System.getenv("dbUrl"));
             dataSource.setUsername(System.getenv("dbUserName"));
             dataSource.setPassword(System.getenv("dbPassword"));
             jdbcTemplate = new JdbcTemplate(dataSource);
