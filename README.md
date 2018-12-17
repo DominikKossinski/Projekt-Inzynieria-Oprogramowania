@@ -16,7 +16,7 @@ Podsumowanie pierwszego sprintu:<br/>
  <li>
    Co jako zespół powinniśmy przestać robić:
    <ul>
-      <li> <b>Zwlekać z akceptowaniem pull request'ów</b></li>
+    <li> <h2><b>Zwlekać z akceptowaniem pull request'ów</b></h2></li>
    </ul>
  </li>
  <li>
