@@ -7,10 +7,8 @@ Podsumowanie pierwszego sprintu:<br/>
  <li>
    Co jako zespół chcemy zacząć robić:
    <ul>
-      <li> Szybciej rozwiązywać problemy</li>
       <li> Działać efektywniej</li>
-      <li> Mniej zadań zostawiać na ostatnią chwilę</li>
-      <li> Pracować regularnie</li>
+    
    </ul>
  </li>
  <li>
@@ -25,6 +23,7 @@ Podsumowanie pierwszego sprintu:<br/>
       <li> Komentować kod oraz pisać testy</li>
       <li> Rozmawiać o tym co nam się podoba a co nie</li>
       <li> Pomagać sobie nawzajem</li>
+      <li> Pracować regularnie</li>
    </ul>
  </li>
 </ul>
