@@ -16,7 +16,7 @@ public class MultiDecorator extends Decorator {
         for (Object aTranslationsArray : translationsArray) {
             String actTranslation = (String) aTranslationsArray;
             if (actTranslation.compareTo("lower") == 0) {
-                UpperCaseDecorator decorator = new UpperCaseDecorator(text);
+                LowerCaseDecorator decorator = new LowerCaseDecorator(text);
                 text = decorator.decore();
             } else if (actTranslation.compareTo("upper") == 0) {
                 UpperCaseDecorator decorator = new UpperCaseDecorator(text);
