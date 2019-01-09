@@ -65,6 +65,12 @@ public class MultiDecorator extends Decorator {
             } else if (actTranslation.compareTo("expandMyShortcuts") == 0) {
                 ExpandMyShortCutsDecorator decorator = new ExpandMyShortCutsDecorator(text);
                 text = decorator.decore();
+            } else if (actTranslation.compareTo("auto") == 0) {
+                AutoCorrectDecorator decorator = new AutoCorrectDecorator(text);
+                text = decorator.decore();
+            } else if (actTranslation.compareTo("delete") == 0) {
+                DeleteRepeatWordsDecorator decorator = new DeleteRepeatWordsDecorator(text);
+                text = decorator.decore();
             }
         }
         return text;
