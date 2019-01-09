@@ -6,7 +6,32 @@
     <link rel="stylesheet" href="css/simple.css">
 </head>
 <body>
-<input type="button" onclick="test()">
+<div style="display: flex; margin: 50px">
+    <div style="display: block; width: 650px;">
+        <label>Type Your Text:</label>
+        <textarea id="text-area" style="width: 650px; height: 300px">
+
+    </textarea>
+
+        <label>Result:</label>
+        <p id="result-p"></p>
+    </div>
+    <div style="margin: 20px; width: 200px; display: block;">
+        <input class="my-button" onclick="autoCorrect()" type="submit" value="Auto Correct">
+        <input class="my-button" onclick="capitalize()" type="submit" value="Capitalize">
+        <input class="my-button" onclick="deleteRepeatedWord()" type="submit" value="Delete Repeated Words">
+        <input class="my-button" onclick="expandShortcuts()" type="submit" value="Expand Shortcuts">
+        <input class="my-button" onclick="inverse()" type="submit" value="Inverse">
+        <input class="my-button" onclick="toLowerCase()" type="submit" value="To Lower Case">
+        <input class="my-button" onclick="expandMyShortcuts()" type="submit" value="Expand My Shortcuts">
+        <input class="my-button" onclick="expandNumbers('eng')" type="submit" value="Expand English Numbers">
+        <input class="my-button" onclick="expandNumbers('pl')" type="submit" value="Expand Polish Numbers">
+        <input class="my-button" onclick="toUpperCase()" type="submit" value="To Upper Case">
+        <input class="my-button" onclick="replace()" style="margin-top: 20px" type="submit" value="Replace">
+        <input class="my-button" onclick=" goToBetterGui()" style="margin-top: 30px" type="submit"
+               value="Go To Better Gui">
+    </div>
+</div>
 <script src="js/simple.js"></script>
 </body>
 </html>
