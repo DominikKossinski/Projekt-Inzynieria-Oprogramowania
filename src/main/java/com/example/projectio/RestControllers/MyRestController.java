@@ -17,7 +17,7 @@ public class MyRestController {
      *
      * @return - Hello World
      */
-    @RequestMapping("/")
+    @RequestMapping("/hello")
     public String getHello() {
         return "Hello world";
     }
