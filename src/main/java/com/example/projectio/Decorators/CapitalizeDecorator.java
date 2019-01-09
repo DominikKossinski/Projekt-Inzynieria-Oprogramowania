@@ -8,6 +8,14 @@ package com.example.projectio.Decorators;
 
 public class CapitalizeDecorator extends Decorator {
 
+    private Decorator decorator = null;
+
+    public CapitalizeDecorator(Decorator decorator) {
+        this.decorator = decorator;
+    }
+
+    ;
+
     public CapitalizeDecorator(String text) {
         this.text = text;
     }
@@ -22,6 +30,9 @@ public class CapitalizeDecorator extends Decorator {
 
     @Override
     public String decore() {
+        if (decorator != null) {
+            text = decorator.decore();
+        }
         text = text.toLowerCase();
 
         StringBuilder result = new StringBuilder(text.length());

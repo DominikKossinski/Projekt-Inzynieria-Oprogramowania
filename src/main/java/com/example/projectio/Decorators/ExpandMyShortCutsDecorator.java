@@ -14,6 +14,12 @@ import java.util.List;
 
 public class ExpandMyShortCutsDecorator extends Decorator {
 
+    private Decorator decorator = null;
+
+    public ExpandMyShortCutsDecorator(Decorator decorator) {
+        this.decorator = decorator;
+    }
+
     public ExpandMyShortCutsDecorator(String text) {
         this.text = text;
     }
@@ -26,6 +32,9 @@ public class ExpandMyShortCutsDecorator extends Decorator {
      */
     @Override
     public String decore() {
+        if (decorator != null) {
+            text = decorator.decore();
+        }
         JdbcTemplate jdbcTemplate = ProjectioApplication.getJdbcTemplate();
         List<Shortcut> shortcuts = jdbcTemplate.query("SELECT * FROM SKROTY",
                 (rs, arg1) -> {
