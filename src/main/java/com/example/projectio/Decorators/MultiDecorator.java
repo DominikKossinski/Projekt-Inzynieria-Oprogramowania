@@ -11,12 +11,16 @@ import org.json.simple.JSONArray;
 
 public class MultiDecorator extends Decorator {
 
+    private Decorator decorator;
+
+    public MultiDecorator(Decorator decorator, JSONArray translationsArray) {
+        this.decorator = decorator;
+        this.translationsArray = translationsArray;
+    }
 
     /**
      * Pole klasy przechowujące listę operacji
      */
-
-
     private JSONArray translationsArray;
 
     public MultiDecorator(String text, JSONArray translationsArray) {
@@ -32,6 +36,9 @@ public class MultiDecorator extends Decorator {
 
     @Override
     public String decore() {
+        if (decorator != null) {
+            text = decorator.decore();
+        }
         for (Object aTranslationsArray : translationsArray) {
             String actTranslation = (String) aTranslationsArray;
             if (actTranslation.compareTo("lower") == 0) {

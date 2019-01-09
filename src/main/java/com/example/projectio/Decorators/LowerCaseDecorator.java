@@ -8,6 +8,12 @@ package com.example.projectio.Decorators;
 
 public class LowerCaseDecorator extends Decorator {
 
+    private Decorator decorator = null;
+
+    public LowerCaseDecorator(Decorator decorator) {
+        this.decorator = decorator;
+    }
+
     public LowerCaseDecorator(String text) {
         this.text = text;
     }
@@ -20,6 +26,9 @@ public class LowerCaseDecorator extends Decorator {
      */
     @Override
     public String decore() {
+        if (decorator != null) {
+            text = decorator.decore();
+        }
         return text.toLowerCase();
     }
 }

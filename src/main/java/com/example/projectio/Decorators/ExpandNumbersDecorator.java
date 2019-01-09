@@ -8,6 +8,8 @@ package com.example.projectio.Decorators;
 
 public class ExpandNumbersDecorator extends Decorator {
 
+    private Decorator decorator = null;
+
     private static final String[] FIRST = new String[]{"zero", "jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć"};
     private static final String[] SECOND = new String[]{"dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście",
             "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"};
@@ -32,6 +34,10 @@ public class ExpandNumbersDecorator extends Decorator {
      * Pole klasy przechowujące oznaczenie języka, w którym mają być rozwijane liczby.
      */
     private String language;
+
+    public ExpandNumbersDecorator(Decorator decorator) {
+        this.decorator = decorator;
+    }
 
     public ExpandNumbersDecorator(String text, String language) {
         this.text = text;
@@ -177,6 +183,9 @@ public class ExpandNumbersDecorator extends Decorator {
      */
     @Override
     public String decore() {
+        if (decorator != null) {
+            text = decorator.decore();
+        }
         String[] arr = text.split(" ", 0);
 
         String x = "";

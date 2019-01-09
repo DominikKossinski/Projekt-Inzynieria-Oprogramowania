@@ -9,6 +9,12 @@ package com.example.projectio.Decorators;
 
 public class ExpandShortcutsDecorator extends Decorator {
 
+    private Decorator decorator = null;
+
+    public ExpandShortcutsDecorator(Decorator decorator) {
+        this.decorator = decorator;
+    }
+
     public ExpandShortcutsDecorator(String text) {
         this.text = text;
     }
@@ -21,6 +27,9 @@ public class ExpandShortcutsDecorator extends Decorator {
      */
     @Override
     public String decore() {
+        if (decorator != null) {
+            text = decorator.decore();
+        }
         text = text.replace("Dr ", "Doktor ");
         text = text.replace("dr ", "doktor ");
 

@@ -14,6 +14,8 @@ import java.util.Vector;
 
 public class AutoCorrectDecorator extends Decorator {
 
+    private Decorator decorator = null;
+
     /**
      * tablica zawierająca litery oraz odpowiadające im możliwości
      */
@@ -103,6 +105,9 @@ public class AutoCorrectDecorator extends Decorator {
      */
     @Override
     public String decore() {
+        if (decorator != null) {
+            text = decorator.decore();
+        }
         correctedSentence = "";
         wordsArray = new String[1];
         if (text.contains(" ")) wordsArray = text.toLowerCase().split(" ");
