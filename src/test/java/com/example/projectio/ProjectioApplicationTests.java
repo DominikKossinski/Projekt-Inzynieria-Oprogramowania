@@ -21,6 +21,8 @@ public class ProjectioApplicationTests {
     private DeleteRepeatWordsDecorator deleteDecorator;
     private UpperCaseDecorator upperCaseDecorator;
 
+    private DeleteRepeatWordsDecorator delDec;
+
 
     @Before
     public void setUp() {
@@ -29,6 +31,7 @@ public class ProjectioApplicationTests {
         inverseDecorator = new InverseDecorator("MarIusz Nie UmiE pIsAc");
         deleteDecorator = new DeleteRepeatWordsDecorator("Ide do do sklepu");
         upperCaseDecorator = new UpperCaseDecorator("Cos tam");
+        delDec = new DeleteRepeatWordsDecorator(new CapitalizeDecorator("abc abc"));
     }
 
     @Test
@@ -142,5 +145,10 @@ public class ProjectioApplicationTests {
         assert (deleteDecorator.decore().compareTo("Wczoraj bylem na uczelni, bylo super") == 0);
         deleteDecorator.setText("Nie Nie moge moge sie sie doczekac doczekac kolejnego kolejnego wykladu");
         assert (deleteDecorator.decore().compareTo("Nie moge sie doczekac kolejnego wykladu") == 0);
+    }
+
+    @Test
+    public void decoratorTest() {
+        assert (delDec.decore().compareTo("Abc") == 0);
     }
 }

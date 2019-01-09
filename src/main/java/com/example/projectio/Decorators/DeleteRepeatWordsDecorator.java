@@ -8,6 +8,12 @@ package com.example.projectio.Decorators;
 
 public class DeleteRepeatWordsDecorator extends Decorator {
 
+    private Decorator decorator = null;
+
+    public DeleteRepeatWordsDecorator(Decorator decorator) {
+        this.decorator = decorator;
+    }
+
     public DeleteRepeatWordsDecorator(String text) {
         this.text = text;
     }
@@ -20,6 +26,9 @@ public class DeleteRepeatWordsDecorator extends Decorator {
      */
     @Override
     public String decore() {
+        if (decorator != null) {
+            text = decorator.decore();
+        }
         StringBuilder result = new StringBuilder(text.length());
         String words[] = text.split("\\ ");
         for (int i = 0; i < words.length - 1; i++) {

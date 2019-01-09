@@ -10,6 +10,12 @@ import static java.lang.Character.isUpperCase;
 
 public class InverseDecorator extends Decorator {
 
+    private Decorator decorator = null;
+
+    public InverseDecorator(Decorator decorator) {
+        this.decorator = decorator;
+    }
+
     public InverseDecorator(String text) {
         this.text = text;
     }
