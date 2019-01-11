@@ -156,7 +156,7 @@ public class AutoCorrectDecorator extends Decorator {
         int tempSize = word.size();
         String tempString = "" + letterA + letterB;
         Vector<String> result = word;
-        for (int j = 0; j < tempSize; j++) {
+        for (int j = 0; j < tempSize - 1; j++) {
             if (result.get(j).toCharArray()[0] == letterA && result.get(j + 1).toCharArray()[0] == letterB) {
                 result.set(j, tempString);
                 result.remove(j + 1);
