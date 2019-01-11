@@ -131,6 +131,9 @@ public class AutoCorrectDecorator extends Decorator {
 
     private boolean findWord(String word) {
         index = 0;
+        if(!alphabet.contains(word.substring(0,1))){
+            return true;
+        }
         for (char p : alphabet.toCharArray()) {
             if (word.toCharArray()[0] == p) {
                 break;
@@ -234,6 +237,7 @@ public class AutoCorrectDecorator extends Decorator {
      */
 
     private String checkPossible() {
+
         for (String i : possible) {
             if (findWord(i)) {
                 return i;
