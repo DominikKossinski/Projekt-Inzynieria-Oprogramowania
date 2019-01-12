@@ -32,13 +32,26 @@ public class MultiTranslationRestController {
         JSONParser parser = new JSONParser();
         try {
             JSONArray translationsArray = (JSONArray) parser.parse(jsonText);
-            Decorator decorator = new MultiDecorator(text, translationsArray);
-            String toReturn = decorator.decore();
-            return toReturn;
+            return getTextFromDecorator(text,translationsArray);
         } catch (ParseException e) {
             e.printStackTrace();
             return "ERROR";
         }
     }
+
+    /**
+     * Metoda klasy MultiTranslationRestController pozwalająca na otrzymanie od dekoratora zmienionego tekstu
+
+     * @param text - (String) tekst do transformacji
+     * @param translationsArray - (JSONArray) - lista transformacji
+     * @return (String) tekst po transformacji
+     */
+
+    public String getTextFromDecorator(String text, JSONArray translationsArray)
+    {
+        Decorator decorator = new MultiDecorator(text, translationsArray);
+        return decorator.decore();
+    }
+
 
 }

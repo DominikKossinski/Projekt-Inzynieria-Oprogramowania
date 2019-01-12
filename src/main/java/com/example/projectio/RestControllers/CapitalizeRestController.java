@@ -35,11 +35,24 @@ public class CapitalizeRestController {
     public String getTextToCapitalize(@RequestParam(name = "text") String text) {
 
         logger.debug("Tekst przed zmianą: " + text);
-        Decorator decorator = new CapitalizeDecorator(text);
-        String toReturn = decorator.decore();
+        String toReturn = getTextFromDecorator(text);
         logger.debug("Tekst po zmianie: " + toReturn);
 
-        return toReturn;
+        return getTextFromDecorator(text);
+    }
+
+    /**
+     * Metoda klasy CapitalizeRestController pozwalająca na otrzymanie od dekoratora zmienionego tekstu
+
+     * @param text - (String) tekst do transformacji
+     * @return (String) tekst po transformacji
+     */
+
+
+    public String getTextFromDecorator(String text)
+    {
+        Decorator decorator = new CapitalizeDecorator(text);
+        return decorator.decore();
     }
 
 }

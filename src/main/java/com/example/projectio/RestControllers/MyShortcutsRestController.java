@@ -41,9 +41,20 @@ public class MyShortcutsRestController {
      */
     @RequestMapping(value = "/api/expandMyShortcuts", method = RequestMethod.GET)
     public String expandMyShortcuts(@RequestParam(name = "text") String text) {
+        return getTextFromDecorator(text);
+    }
+
+    /**
+     * Metoda klasy MyShortcutsRestController pozwalająca na otrzymanie od dekoratora zmienionego tekstu
+
+     * @param text - (String) tekst do transformacji
+     * @return (String) tekst po transformacji
+     */
+
+    public String getTextFromDecorator(String text)
+    {
         Decorator decorator = new ExpandMyShortCutsDecorator(text);
-        String toReturn = decorator.decore();
-        return toReturn;
+        return decorator.decore();
     }
 
     /**

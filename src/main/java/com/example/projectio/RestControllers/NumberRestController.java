@@ -34,9 +34,20 @@ public class NumberRestController {
     @GetMapping("/api/numbers")
     public String getTextToNumbers(@RequestParam(name = "text") String text,
                                    @RequestParam(name = "lg", defaultValue = "pl", required = false) String language) {
-        Decorator decorator = new ExpandNumbersDecorator(text, language);
-        String toReturn = decorator.decore();
-        return toReturn;
+        return getTextFromDecorator(text, language);
+    }
+
+    /**
+     * Metoda klasy NumberRestController pozwalająca na otrzymanie od dekoratora zmienionego tekstu
+
+     * @param text - (String) tekst do transformacji
+     * @return (String) tekst po transformacji
+     */
+
+    public String getTextFromDecorator(String text, String lan)
+    {
+        Decorator decorator = new ExpandNumbersDecorator(text, lan);
+        return decorator.decore();
     }
 
 }
