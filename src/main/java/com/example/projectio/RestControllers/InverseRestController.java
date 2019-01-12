@@ -43,9 +43,21 @@ public class InverseRestController {
       
        logger.info("Rozpoczynam translację metodą inverse");
         this.text = text;
+        return getTextFromDecorator(text);
+    }
+
+    /**
+     * Metoda klasy InverseRestController pozwalająca na otrzymanie od dekoratora zmienionego tekstu
+
+     * @param text - (String) tekst do transformacji
+     * @return (String) tekst po transformacji
+     */
+
+
+    public String getTextFromDecorator(String text)
+    {
         Decorator decorator = new InverseDecorator(text);
-        String toReturn = decorator.decore();
-        return toReturn;
+        return decorator.decore();
     }
 
 

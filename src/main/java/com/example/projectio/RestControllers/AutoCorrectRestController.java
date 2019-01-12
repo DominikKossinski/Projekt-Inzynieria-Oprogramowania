@@ -34,11 +34,23 @@ public class AutoCorrectRestController {
     @GetMapping("/api/autocorrect")
     public String getTextToCapitalize(@RequestParam(name = "text") String text) {
         logger.debug("Tekst przed zmianą: " + text);
-        Decorator decorator = new AutoCorrectDecorator(text);
-        String toReturn = decorator.decore();
+        String toReturn = getTextFromDecorator(text);
         logger.debug("Tekst po zmianie: " + toReturn);
 
-        return toReturn;
+        return getTextFromDecorator(text);
+    }
+
+    /**
+     * Metoda klasy AutoCorrectRestController pozwalająca na otrzymanie od dekoratora zmienionego tekstu
+
+     * @param text - (String) tekst do transformacji
+     * @return (String) tekst po transformacji
+     */
+
+    public String getTextFromDecorator(String text)
+    {
+        Decorator decorator = new AutoCorrectDecorator(text);
+        return decorator.decore();
     }
 
 }

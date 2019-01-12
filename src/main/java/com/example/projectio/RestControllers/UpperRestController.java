@@ -31,10 +31,20 @@ public class UpperRestController {
 
     @GetMapping("/api/upper")
     public String getTextToUpperCase(@RequestParam(name = "text") String text) {
-        Decorator decorator = new UpperCaseDecorator(text);
-        String toReturn = decorator.decore();
-        return toReturn;
+        return getTextFromDecorator(text);
     }
 
+    /**
+     * Metoda klasy UpperRestController pozwalająca na otrzymanie od dekoratora zmienionego tekstu
+
+     * @param text - (String) tekst do transformacji
+     * @return (String) tekst po transformacji
+     */
+
+    public String getTextFromDecorator(String text)
+    {
+        Decorator decorator = new UpperCaseDecorator(text);
+        return decorator.decore();
+    }
 
 }
