@@ -73,8 +73,8 @@ function dragElement(elmnt) {
 function renderDivs() {
     for (var i = 0; i < lewa.length; i++) {
         var div = document.getElementById(lewa[i]);
-        div.style.left = 1020 + "px";
-        div.style.top = 40 + 50 * i + "px";
+        div.style.left = 1320 + "px";
+        div.style.top = 190 + 70 * i + "px";
     }
     for (i = 0; i < tempP.length; i++) {
         prawa.push(tempP[i] + "_" + prawa.length);
@@ -130,8 +130,10 @@ function renderDivs() {
         }
         div1.className = "transformation-div";
         div.appendChild(div1);
-        div.style.left = 720 + "px";
-        div.style.top = 40 + 50 * i + "px";
+        div.style.left = 820 + "px";
+        div.style.top = 190 + 70 * i + "px";
+        /*div.style.left = 1320 + "px";
+        div.style.top = 190 + 70 * i + "px";*/
         document.getElementById("wrapper").appendChild(div);
         dragElement(div);
     }
