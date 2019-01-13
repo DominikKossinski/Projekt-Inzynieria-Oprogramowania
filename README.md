@@ -28,5 +28,12 @@ Podsumowanie pierwszego sprintu:<br/>
  </li>
 </ul>
 
-Testy wydajnościowe:
+<h1>Testy wydajnościowe:</h1>
 Test obciążeniowy równoległego połączenia dużej ilości osób do serwera jednocześnie
+
+<h1>Cel pomiarowy:</h1>
+Monitorowanie ilości wytwarzanego kodu liczonego wraz z dokumentacją
+
+<h2>Pomiar jakości kodu LOC</h2>
+Polecenie pomiaru: <b>git ls-files | xargs wc -l<b> wykonane w folderze Projekt-Inzynieria-Oprogramowania/src/main/java
+ Wynik 1824 linijki kodu.
