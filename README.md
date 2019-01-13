@@ -49,7 +49,7 @@ Polecenie pomiaru: <b>git ls-files | xargs wc -l</b> wykonane w folderze Projekt
  </ul>
   Projekt wykorzystuje także zmienne środowiskowe przechowujące dane o bazie danych:<br>
   <ul>
-  <li>dbUrl - link do bazy danych w przypdaku (np. jdbc:mysql://127.0.0.1:3306/projektIo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC )</li>
+  <li>dbUrl - link do bazy danych (np. jdbc:mysql://127.0.0.1:3306/projektIo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC )</li>
  <li>dbUserName - nazwa użytkownika z bazy danych, kótry ma dostęp do wyżej utworzonej relacji</li>
  <li>dbPassword - hasło do bazy danych wyżej wymienionego użytkownika</li>
  </ul>
