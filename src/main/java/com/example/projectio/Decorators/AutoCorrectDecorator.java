@@ -14,6 +14,9 @@ import java.util.Vector;
 
 public class AutoCorrectDecorator extends Decorator {
 
+    /**
+     * Dekorator pole wykozystywane w implementacji wzorca dekorator
+     */
     private Decorator decorator = null;
 
     /**
@@ -49,6 +52,11 @@ public class AutoCorrectDecorator extends Decorator {
      */
     private String[] wordsArray;
 
+    /**
+     * Publiczny konstruktor klasy AutoCorrectDecorator
+     *
+     * @param text - tekst wprowadzony przez użytkownika
+     */
     public AutoCorrectDecorator(String text) {
         this.text = text;
         wordsArray = new String[1];
@@ -60,7 +68,6 @@ public class AutoCorrectDecorator extends Decorator {
      *
      * @param path - (String) nazwa pliku ze słownikiem
      */
-
     public static void init(String path) {
         AutoCorrectDecorator.dictionary = new Vector<Vector<String>>();
         for (int i = 0; i < 31; i++) dictionary.add(new Vector<String>());
@@ -89,7 +96,6 @@ public class AutoCorrectDecorator extends Decorator {
     /**
      * Metoda klasy AutoCorrectDecorator pozwalająca na wypisanie słownika w konsoli
      */
-
     public static void printDict() {
         for (Vector<String> i : dictionary) {
             for (String k : i) {
@@ -128,9 +134,11 @@ public class AutoCorrectDecorator extends Decorator {
      * @param word - (String) słowo do znalezienia
      * @return (boolean) true jeżeli słowo znajduje się w słowniku false w przeciwnym wypadku
      */
-
     private boolean findWord(String word) {
         index = 0;
+        if (!alphabet.contains(word.substring(0, 1))) {
+            return true;
+        }
         for (char p : alphabet.toCharArray()) {
             if (word.toCharArray()[0] == p) {
                 break;
@@ -148,12 +156,11 @@ public class AutoCorrectDecorator extends Decorator {
      * @param letterB - (char) druga litera do znalezienia
      * @return (Vector ( String)) słowo z połączonymi literami
      */
-
     private Vector<String> mergeLetters(Vector<String> word, char letterA, char letterB) {
         int tempSize = word.size();
         String tempString = "" + letterA + letterB;
         Vector<String> result = word;
-        for (int j = 0; j < tempSize; j++) {
+        for (int j = 0; j < tempSize - 1; j++) {
             if (result.get(j).toCharArray()[0] == letterA && result.get(j + 1).toCharArray()[0] == letterB) {
                 result.set(j, tempString);
                 result.remove(j + 1);
@@ -168,7 +175,6 @@ public class AutoCorrectDecorator extends Decorator {
      *
      * @param word - (String) słowo do rozdzielenia
      */
-
     private void splitWord(String word) {
         splitted = new Vector<String>();
         for (String i : word.split("")) {
@@ -184,7 +190,6 @@ public class AutoCorrectDecorator extends Decorator {
      * @param letterA - (String) pierwsza głoska
      * @param letterB - (String) druga głoska
      */
-
     private void generatePossible(String letterA, String letterB) {
         String temp = "";
         for (int j = 0; j < splitted.size(); j++) {
@@ -207,7 +212,6 @@ public class AutoCorrectDecorator extends Decorator {
      *
      * @param word - (String) słowo początkowe
      */
-
     private void generateAllPossible(String word) {
         possible = new Vector<String>();
         possible.add(word);
@@ -232,8 +236,8 @@ public class AutoCorrectDecorator extends Decorator {
      *
      * @return (String) - pierwsze możliwe słowo znalezione w słowniku
      */
-
     private String checkPossible() {
+
         for (String i : possible) {
             if (findWord(i)) {
                 return i;
@@ -241,6 +245,7 @@ public class AutoCorrectDecorator extends Decorator {
         }
         return possible.get(0);
     }
+
 
     public void setText(String text) {
         this.text = text;

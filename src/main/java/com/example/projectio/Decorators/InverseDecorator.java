@@ -10,12 +10,25 @@ import static java.lang.Character.isUpperCase;
 
 public class InverseDecorator extends Decorator {
 
+    /**
+     * Dekorator pole wykozystywane w implementacji wzorca dekorator
+     */
     private Decorator decorator = null;
 
+    /**
+     * Publiczny konstruktor klasy, który przyjmuje inny dekorator.
+     *
+     * @param decorator
+     */
     public InverseDecorator(Decorator decorator) {
         this.decorator = decorator;
     }
 
+    /**
+     * Publiczny konstruktor klasy, który przyjmuje jako parametr tekst wprowadzony przez użytkownika
+     *
+     * @param text - tekst wprowadzony przez użytkownika
+     */
     public InverseDecorator(String text) {
         this.text = text;
     }

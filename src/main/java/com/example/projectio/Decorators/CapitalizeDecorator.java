@@ -8,14 +8,25 @@ package com.example.projectio.Decorators;
 
 public class CapitalizeDecorator extends Decorator {
 
+    /**
+     * Dekorator pole wykozystywane w implementacji wzorca dekorator
+     */
     private Decorator decorator = null;
 
+    /**
+     * Publiczny konstruktor klasy przyjmujący jako parametr inny dekorator.
+     *
+     * @param decorator - dekoratoe
+     */
     public CapitalizeDecorator(Decorator decorator) {
         this.decorator = decorator;
     }
 
-    ;
 
+    /**
+     * Publiczny konstruktor klasy przyjmujący jako parametr tekst podany przez użytkownika.
+     * @param text - tekst podany przez użytkownika
+     */
     public CapitalizeDecorator(String text) {
         this.text = text;
     }
@@ -27,7 +38,6 @@ public class CapitalizeDecorator extends Decorator {
      *
      * @return (String) tekst po zastosowaniu translacji w którym pierwsza litera każdego wyrazu jest wielka
      */
-
     @Override
     public String decore() {
         if (decorator != null) {
