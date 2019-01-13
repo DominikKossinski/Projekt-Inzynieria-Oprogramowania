@@ -35,5 +35,5 @@ Test obciążeniowy równoległego połączenia dużej ilości osób do serwera 
 Monitorowanie ilości wytwarzanego kodu liczonego wraz z dokumentacją
 
 <h2>Pomiar jakości kodu LOC</h2>
-Polecenie pomiaru: <b>git ls-files | xargs wc -l</b> wykonane w folderze Projekt-Inzynieria-Oprogramowania/src/main/java
+Polecenie pomiaru: <b>git ls-files | xargs wc -l</b> wykonane w folderze Projekt-Inzynieria-Oprogramowania/src/main/java<br>
  Wynik 1824 linijki kodu.
