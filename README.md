@@ -55,7 +55,7 @@ Polecenie pomiaru: <b>git ls-files | xargs wc -l</b> wykonane w folderze Projekt
  </ul>
   Projekt najlepiej uruchomić przy pomocy środowiska "Intellij idea" i w zakładce <br>
   Run -> Edit Configurations -> Spring Boot -> <nazwa_run> -> Environment variables dodać wyżej wymienione zmienne.
-  
+  <br><br>
   Alternatywnym rozwiązaniem jest zmienienie w klasie <b>ProjectioApplication</b> w metodzie <b>getJdbcTemplate()</b>
   w każdym wywołaniu <b>System.getenv(<nazwa_zmiennej_środowiskowej>)</b> zamienić na String o odpowiedniej wartości.
   
