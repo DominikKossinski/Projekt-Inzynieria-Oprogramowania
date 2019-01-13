@@ -27,4 +27,6 @@ Podsumowanie pierwszego sprintu:<br/>
    </ul>
  </li>
 </ul>
- 
+
+Testy wydajnościowe:
+Test obciążeniowy równoległego połączenia dużej ilości osób do serwera jednocześnie
