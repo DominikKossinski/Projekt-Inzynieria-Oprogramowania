@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Page</title>
+    <link rel="stylesheet" href="css/simple.css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+</head>
+<body>
+<div>
+
+    <div id="logo">
+
+        <a href="/simple">
+            <img src="/img/hos_logo.png"/>
+        </a>
+
+        <div id="pasek">
+            <a href="/simple">
+                <div class="linkref">
+                    Basic
+                </div>
+            </a>
+            <a href="/textTransformer">
+                <div class="linkref">
+                    Advanced
+                </div>
+            </a>
+        </div>
+        <div style="clear: both"></div>
+
+    </div>
+
+    <div id="container">
+
+        <div id="inp" >
+            <label class="label">Type Your Text:</label>
+            <textarea id="text-area" ></textarea>
+
+            <label class="label">Result:</label>
+            <p id="result-p"></p>
+            <input id="my_replace-button" onclick="replace()" style="margin-top: 10px" type="submit" value="Replace">
+        </div>
+        <div id="btns" >
+            <input class="my-button" onclick="autoCorrect()" type="submit" value="Auto Correct">
+            <input class="my-button" onclick="capitalize()" type="submit" value="Capitalize">
+            <input class="my-button" onclick="deleteRepeatedWord()" type="submit" value="Delete Repeated Words">
+            <input class="my-button" onclick="expandShortcuts()" type="submit" value="Expand Shortcuts">
+            <input class="my-button" onclick="inverse()" type="submit" value="Inverse">
+            <input class="my-button" onclick="toLowerCase()" type="submit" value="To Lower Case">
+            <input class="my-button" onclick="expandMyShortcuts()" type="submit" value="Expand My Shortcuts">
+            <input class="my-button" onclick="expandNumbers('eng')" type="submit" value="Expand English Numbers">
+            <input class="my-button" onclick="expandNumbers('pl')" type="submit" value="Expand Polish Numbers">
+            <input class="my-button" onclick="toUpperCase()" type="submit" value="To Upper Case">
+            <!--<input class="my-button" onclick=" goToBetterGui()" style="margin-top: 40px; height: 100px" type="submit"
+                   value="advanced functionality">-->
+        </div>
+        <div style="clear: both"></div>
+
+    </div>
+
+</div>
+<script src="js/simple.js"></script>
+</body>
+</html>
