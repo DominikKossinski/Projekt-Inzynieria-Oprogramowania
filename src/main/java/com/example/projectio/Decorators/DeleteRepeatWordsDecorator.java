@@ -8,12 +8,24 @@ package com.example.projectio.Decorators;
 
 public class DeleteRepeatWordsDecorator extends Decorator {
 
+    /**
+     * Dekorator pole wykozystywane w implementacji wzorca dekorator
+     */
     private Decorator decorator = null;
 
+    /**
+     * Publiczny konstruktor klasy przyjmujący jako parametr inny dekorator.
+     *
+     * @param decorator - dekorator
+     */
     public DeleteRepeatWordsDecorator(Decorator decorator) {
         this.decorator = decorator;
     }
 
+    /**
+     * Publiczny konstruktor klasy przyjmujący jako parametr tekst wprowadzony przez użytkownika.
+     * @param text- tekst
+     */
     public DeleteRepeatWordsDecorator(String text) {
         this.text = text;
     }

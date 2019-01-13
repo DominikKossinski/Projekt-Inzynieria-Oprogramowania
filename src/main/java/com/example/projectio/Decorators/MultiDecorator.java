@@ -23,6 +23,13 @@ public class MultiDecorator extends Decorator {
      */
     private JSONArray translationsArray;
 
+    /**
+     * Publiczny konstruktor klasy przyjmuje tekst wprowadzony przez użytkownika oraz JSONArray
+     * zawierający listę transformacji
+     *
+     * @param text              - tekst
+     * @param translationsArray - lista transformacji
+     */
     public MultiDecorator(String text, JSONArray translationsArray) {
         this.text = text;
         this.translationsArray = translationsArray;

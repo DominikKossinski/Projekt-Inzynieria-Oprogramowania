@@ -14,12 +14,24 @@ import java.util.List;
 
 public class ExpandMyShortCutsDecorator extends Decorator {
 
+    /**
+     * Dekorator pole wykozystywane w implementacji wzorca dekorator
+     */
     private Decorator decorator = null;
 
+    /**
+     * Publiczny konstruktor klasy przyjmujący jako parametr inny dekorator (implementacja wzorca Dekorator)
+     *
+     * @param decorator - dekorator
+     */
     public ExpandMyShortCutsDecorator(Decorator decorator) {
         this.decorator = decorator;
     }
 
+    /**
+     * Publiczny konstruktor klasy przyjmujący jako parametr tekst wprowadzony przez użytkownika
+     * @param text - tekst wprowadzony przez użytkownika
+     */
     public ExpandMyShortCutsDecorator(String text) {
         this.text = text;
     }

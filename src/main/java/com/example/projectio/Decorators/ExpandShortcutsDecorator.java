@@ -9,12 +9,24 @@ package com.example.projectio.Decorators;
 
 public class ExpandShortcutsDecorator extends Decorator {
 
+    /**
+     * Dekorator pole wykozystywane w implementacji wzorca dekorator
+     */
     private Decorator decorator = null;
 
+    /**
+     * Publiczny konstruktor klasy przyjmujący jako parametr inny dekorator (implementacja wzorca Dekorator)
+     *
+     * @param decorator - dekorator
+     */
     public ExpandShortcutsDecorator(Decorator decorator) {
         this.decorator = decorator;
     }
 
+    /**
+     * Publiczny konstruktor klasy przyjmujący jako parametr tekst wprowadzony przez użytkownika
+     * @param text - tekst wprowadzony przezużytkownika
+     */
     public ExpandShortcutsDecorator(String text) {
         this.text = text;
     }
