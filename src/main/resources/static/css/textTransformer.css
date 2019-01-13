@@ -9,7 +9,7 @@
 }
 
 body {
-    background: url(/img/background.jpg) no-repeat;
+    background: url(/img/background.jpg);
     background-size: cover;
     margin: 0;
     padding: 0;
@@ -183,6 +183,7 @@ body {
     width: 100%;
     background: rgba(0, 0, 0, 0.3);
     position: fixed;
+    z-index: 1;
 }
 
 img {
