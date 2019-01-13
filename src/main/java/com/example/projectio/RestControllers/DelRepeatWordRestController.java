@@ -27,9 +27,21 @@ public class DelRepeatWordRestController {
      */
     @GetMapping("/api/repeatDel")
     public String getTextWithDelRepeats(@RequestParam(name = "text") String text) {
-        Decorator decorator = new DeleteRepeatWordsDecorator(text);
-        String toReturn = decorator.decore();
-        return toReturn;
+        return getTextFromDecorator(text);
     }
+
+    /**
+     * Metoda klasy DelRepeatWordRestController pozwalająca na otrzymanie od dekoratora zmienionego tekstu
+
+     * @param text - (String) tekst do transformacji
+     * @return (String) tekst po transformacji
+     */
+
+    public String getTextFromDecorator(String text)
+    {
+        Decorator decorator = new DeleteRepeatWordsDecorator(text);
+        return decorator.decore();
+    }
+
 
 }

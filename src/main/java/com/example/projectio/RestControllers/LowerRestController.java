@@ -29,9 +29,20 @@ public class LowerRestController {
 
     @GetMapping("/api/lower")
     public String getTextToLowerCase(@RequestParam(name = "text") String text) {
+        return getTextFromDecorator(text);
+    }
+
+    /**
+     * Metoda klasy LowerRestController pozwalająca na otrzymanie od dekoratora zmienionego tekstu
+
+     * @param text - (String) tekst do transformacji
+     * @return (String) tekst po transformacji
+     */
+
+    public String getTextFromDecorator(String text)
+    {
         Decorator decorator = new LowerCaseDecorator(text);
-        String toReturn = decorator.decore();
-        return toReturn;
+        return decorator.decore();
     }
 
 }
