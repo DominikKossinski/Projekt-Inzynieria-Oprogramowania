@@ -4,59 +4,92 @@
     <meta charset="UTF-8">
     <title>Text Transformer</title>
     <link href="/css/textTransformer.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
 </head>
 <style>
 
 </style>
 <body onload="renderDivs()">
+
 <div id="wrapper">
-    <!--//TODO poprawić renderowanie w polu-->
+
+    <div id="logo">
+
+        <a href="/simple">
+            <img src="/img/hos_logo.png"/>
+        </a>
+
+        <div id="pasek">
+            <a href="/simple">
+                <div class="linkref">
+                    Basic
+                </div>
+            </a>
+            <a href="/textTransformer">
+                <div class="linkref">
+                    Advanced
+                </div>
+            </a>
+        </div>
+        <div style="clear: both"></div>
+
+    </div>
+    <div id="container">
+        <div id="inp">
+            <label id="text-label">Type Your Text:</label>
+            <textarea id="text-area"></textarea>
+
+            <label id="result-label">Result:</label>
+            <p id="result-p"></p>
+            <input id="replace-input" onclick="replace()" type="submit" value="Replace">
+        </div>
+        <div id="btns">
+
+            <div id="left-div"></div>
+            <div id="drop">
+                <div id="right-div"></div>
+                <input id="clear-input" onclick="clearTranslations()" type="submit" value="Clear Translations">
+                <input id="start-input" onclick="startTransformation()" type="submit" value="Start transformation">
+            </div>
+
+            <div class="l" id="auto-div">
+                <div class="transformation-div" id="auto-div-header">Auto Correct</div>
+            </div>
+            <div class="l" id="capitalize-div">
+                <div class="transformation-div" id="capitalize-div-header">Capitalize</div>
+            </div>
+            <div class="l" id="del-div">
+                <div class="transformation-div" id="del-div-header">Delete Repeated Words</div>
+            </div>
+            <div class="l" id="expand-s-div">
+                <div class="transformation-div" id="expand-s-div-header">Expand Shortcuts</div>
+            </div>
+            <div class="l" id="inverse-div">
+                <div class="transformation-div" id="inverse-div-header">Inverse</div>
+            </div>
+            <div class="l" id="lower-div">
+                <div class="transformation-div" id="lower-div-header">To Lower Case</div>
+            </div>
+            <div class="l" id="expand-m-div">
+                <div class="transformation-div" id="expand-m-div-header">Expand My Shortcuts</div>
+            </div>
+            <div class="l" id="expand-eng-div">
+                <div class="transformation-div" id="expand-eng-div-header">Expand English Numbers</div>
+            </div>
+            <div class="l" id="expand-pl-div">
+                <div class="transformation-div" id="expand-pl-div-header">Expand Polish Numbers</div>
+            </div>
+            <div class="l" id="upper-div">
+                <div class="transformation-div" id="upper-div-header">To Upper Case</div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+
+<!--    &lt;!&ndash;//TODO poprawić renderowanie w polu&ndash;&gt;
     <label id="left-label"></label>
-    <label id="right-label"></label>
+    <label id="right-label"></label>-->
 
-    <label id="text-label">Text:</label>
-    <textarea id="text-area"></textarea>
-
-    <label id="result-label">Result</label>
-    <input id="start-input" onclick="startTransformation()" type="submit" value="Start transformation">
-    <input id="replace-input" onclick="replace()" type="submit" value="Replace">
-    <input id="clear-input" onclick="clearTranslations()" type="submit" value="Clear Translations">
-    <p id="result-p"></p>
-
-    <div id="left-div"></div>
-
-    <div id="right-div"></div>
-
-    <div class="l" id="auto-div">
-        <div class="transformation-div" id="auto-div-header">Auto Correct</div>
-    </div>
-    <div class="l" id="capitalize-div">
-        <div class="transformation-div" id="capitalize-div-header">Capitalize</div>
-    </div>
-    <div class="l" id="del-div">
-        <div class="transformation-div" id="del-div-header">Delete Repeated Words</div>
-    </div>
-    <div class="l" id="expand-s-div">
-        <div class="transformation-div" id="expand-s-div-header">Expand Shortcuts</div>
-    </div>
-    <div class="l" id="inverse-div">
-        <div class="transformation-div" id="inverse-div-header">Inverse</div>
-    </div>
-    <div class="l" id="lower-div">
-        <div class="transformation-div" id="lower-div-header">To Lower Case</div>
-    </div>
-    <div class="l" id="expand-m-div">
-        <div class="transformation-div" id="expand-m-div-header">Expand My Shortcuts</div>
-    </div>
-    <div class="l" id="expand-eng-div">
-        <div class="transformation-div" id="expand-eng-div-header">Expand English Numbers</div>
-    </div>
-    <div class="l" id="expand-pl-div">
-        <div class="transformation-div" id="expand-pl-div-header">Expand Polish Numbers</div>
-    </div>
-    <div class="l" id="upper-div">
-        <div class="transformation-div" id="upper-div-header">To Upper Case</div>
-    </div>
 
 
 </div>

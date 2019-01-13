@@ -1,85 +1,235 @@
 .l {
     position: absolute;
     z-index: 9;
+    /*
     background-color: #f1f1f1;
+    */
     text-align: center;
-    border: 1px solid #d3d3d3;
+    border: none;
 }
 
 body {
-    background: aqua;
+    background: url(/img/background.jpg) no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    font-family: 'Josefin Sans', sans-serif;
 }
+
+#container{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 .transformation-div {
-    padding: 10px;
+    padding: 10px 15px;
     cursor: move;
-    width: 200px;
+    width: 400px;
+    text-transform: uppercase;
     z-index: 10;
-    background-color: #2196F3;
-    color: #fff;
+    font-size: 25px;
+    background: none;
+    border: 3px solid #FFFFFF;
+    border-radius: 5px;
+    color: #ffff;
+    transition: background-color .9s;
 }
 
-#text-label {
-    position: absolute;
-    top: 50px;
-    left: 50px;
+.transformation-div:hover {
+    background-color: #347cef;
 }
+
 
 #left-div {
     position: absolute;
-    top: 20px;
-    left: 1000px;
-    background: #000000;
-    width: 260px;
-    height: 540px;
+    top: 170px;
+    left: 1300px;
+    width: 460px;
+    height: 720px;
+}
+
+#drop{
+    position: absolute;
+    top: 170px;
+    left: 800px;
 }
 
 #right-div {
-    position: absolute;
-    top: 20px;
-    left: 700px;
+    position: relative;
+    display: block;
     background: #00FF00;
-    width: 260px;
-    height: 540px;
+    background: url(/img/lab_bck.png) no-repeat;
+    background-size: cover;
+    width: 475px;
+    height: 440px;
 }
 
 #start-input {
+    font-family: 'Josefin Sans', sans-serif;
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    width: 400px;
+    text-transform: uppercase;
+    z-index: 10;
+    font-size: 25px;
+    background: #347cef;
+    border: 3px solid #FFFFFF;
+    border-radius: 5px;
+    color: #ffff;
+    transition: background-color .9s;
+}
+
+#start-input:hover{
+    background-color: transparent;
+}
+
+
+
+#clear-input {
+    font-family: 'Josefin Sans', sans-serif;
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    width: 400px;
+    text-transform: uppercase;
+    z-index: 10;
+    font-size: 25px;
+    background: #347cef;
+    border: 3px solid #FFFFFF;
+    border-radius: 5px;
+    color: #ffff;
+    transition: background-color .9s;
+}
+
+#clear-input:hover{
+    background-color: transparent;
+}
+
+#inp{
     position: absolute;
-    top: 390px;
-    left: 200px;
+    top: 145px;
+    left: 60px;
+    width: 650px;
 }
 
 #replace-input {
-    position: absolute;
-    top: 390px;
-    left: 350px;
+    font-family: 'Josefin Sans', sans-serif;
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    width: 400px;
+    text-transform: uppercase;
+    z-index: 10;
+    font-size: 25px;
+    background: #347cef;
+    border: 3px solid #FFFFFF;
+    border-radius: 5px;
+    color: #ffff;
+    transition: background-color .9s;
 }
 
-#clear-input {
-    position: absolute;
-    top: 390px;
-    left: 450px;
+#replace-input:hover{
+    background-color: transparent;
 }
 
 #text-area {
-    position: absolute;
     width: 600px;
-    height: 300px;
-    top: 75px;
-    left: 50px;
+    height: 220px;
+    padding: 15px;
+    font-size: 25px;
+    margin-bottom: 15px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#text-label {
+
+    color: #FFFFFF;
+    font-size: 40px;
 }
 
 #result-label {
-    position: absolute;
-    top: 390px;
-    left: 50px;
+    color: #FFFFFF;
+    font-size: 40px;
 }
 
 #result-p {
-    position: absolute;
+    margin-top: 5px;
     width: 600px;
-    height: 300px;
+    height: 220px;
+    padding: 15px;
     background: #FFFFFF;
-    top: 425px;
-    left: 50px;
+    font-size: 25px;
+    font-family: 'Josefin Sans', sans-serif;
+
+}
+
+#logo{
+    height: 140px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    position: fixed;
+}
+
+img {
+    margin-left: 20px;
+    max-width: 450px;
+    max-height: 120px;
+    padding: 20px;
+    display: inline-block;
+    float: left;
+}
+
+#pasek{
+    position: relative;
+    float: inside;
+    width: 1000px;
+    justify-content: center;
+    text-align: center;
+    margin-top: 32px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a{
+    text-decoration: none;
+}
+
+.linkref{
+    color: #FFFFFF;
+    font-family: sans-serif;
+    display: inline-block;
+    font-size: 35px;
+    font-weight: bold;
+    padding: 20px;
+    margin: 0px 20px 0px 20px;
+}
+
+.linkref:after{
+    content:"";
+    display: block;
+    width: 0px;
+    height: 3px;
+    background-color: white;
+    transition: width .9s;
+
+}
+
+.linkref:hover:after{
+    width: 100%;
+    cursor: pointer;
 }
